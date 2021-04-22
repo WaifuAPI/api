@@ -1,0 +1,19 @@
+# Environment variables
+.env
+
+
+# dependencies
+/node_modules
+
+# Private files
+/private
+
+
+# jetbrains
+.idea/
+
+# vscode
+.vscode/
+
+# Logs
+/logs
