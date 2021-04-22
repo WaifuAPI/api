@@ -12,9 +12,9 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on this project.
 
 ## Branches
 
-- staging -> [pull request][pr] this branch for everything
-
 - production -> don't touch, this is what's running in production
+
+- staging -> [pull request][pr] this branch for everything
 
 ## Pull Requests
 
