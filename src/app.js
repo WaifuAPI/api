@@ -55,7 +55,8 @@ if (process.env.LOGGER === 'true') {
 app.get('/', (req, res) => {
   res.json({
     code: '200',
-    message: 'ok',
+    message:
+      'Join the support server to get auth token https://discord.gg/yyW389c',
   })
 })
 app.use(ipLogger)
