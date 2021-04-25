@@ -84,6 +84,6 @@ $ npm run dev
 ## License
 
 By contributing to Animu, you agree that your contributions will be licensed
-under the [LICENSE file](LICENSE).
+under the [LICENSE file](LICENSE.md).
 
 [mongodb/atlas]: https://www.mongodb.com/cloud/atlas
