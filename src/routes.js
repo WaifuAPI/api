@@ -30,6 +30,6 @@ router.get('/api/alltags', Limiter, authHandler, getAllTags)
 router.get('/api/waifu', Limiter, authHandler, randomWaifus)
 
 // Random Password Endpoint
-router.get('/api/password', Limiter, randomPasswords)
+router.get('/api/password', Limiter, authHandler, randomPasswords)
 
 module.exports = router
