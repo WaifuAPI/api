@@ -5,6 +5,7 @@ const getFactbyId = require('./controllers/facts/getFactbyId')
 const randomFacts = require('./controllers/facts/randomFacts')
 const getAllTags = require('./controllers/tags/listTags')
 const randomWaifus = require('./controllers/waifus/randomWaifus')
+const randomPasswords = require('./controllers/passwords/randomPassword')
 
 const router = Router()
 
@@ -18,14 +19,17 @@ const Limiter = rateLimit({
   },
 })
 
-// Facts Endpoint
-router.get('/fact', Limiter, authHandler, randomFacts)
-router.get('/facts/:id', Limiter, authHandler, getFactbyId)
+// Fact Endpoints
+router.get('/api/fact', Limiter, authHandler, randomFacts)
+router.get('/api/facts/:id', Limiter, authHandler, getFactbyId)
 
 // Tags Endpoint
-router.get('/alltags', Limiter, authHandler, getAllTags)
+router.get('/api/alltags', Limiter, authHandler, getAllTags)
 
 // Waifu Endpoint
-router.get('/waifu', Limiter, authHandler, randomWaifus)
+router.get('/api/waifu', Limiter, authHandler, randomWaifus)
+
+// Random Password Endpoint
+router.get('/api/password', Limiter, randomPasswords)
 
 module.exports = router

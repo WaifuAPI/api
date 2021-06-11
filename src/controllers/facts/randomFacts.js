@@ -6,7 +6,7 @@ const tagsFilter = require('../../utils/tagsFilter')
 const lengthFilter = require('../../utils/lengthFilter')
 
 // Get random Anime Fact
-module.exports = async function getRandomQuote(req, res, next) {
+module.exports = async function getRandomFact(req, res, next) {
   try {
     const { minLength, maxLength, tags } = req.query
 
