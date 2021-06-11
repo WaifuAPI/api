@@ -17,7 +17,6 @@ const { ipLogger } = require('./handlers/logger/ip')
 const app = express()
 app.use(cors())
 app.set('trust proxy', 1)
-app.use(require('express-status-monitor')())
 
 // Logger
 if (process.env.LOGGER === 'true') {

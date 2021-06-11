@@ -17,3 +17,6 @@
 
 # Logs
 /logs
+
+# Data Files
+/data
