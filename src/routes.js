@@ -6,6 +6,7 @@ const randomFacts = require('./controllers/facts/randomFacts')
 const getAllTags = require('./controllers/tags/listTags')
 const randomWaifus = require('./controllers/waifus/randomWaifus')
 const randomPasswords = require('./controllers/passwords/randomPassword')
+const randomQuotes = require('./controllers/quotes/randomQuotes')
 
 const router = Router()
 
@@ -31,5 +32,8 @@ router.get('/api/waifu', Limiter, authHandler, randomWaifus)
 
 // Random Password Endpoint
 router.get('/api/password', Limiter, authHandler, randomPasswords)
+
+// Random Quote Endpoint
+router.get('/api/quote', Limiter, authHandler, randomQuotes)
 
 module.exports = router
