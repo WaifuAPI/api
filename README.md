@@ -1,3 +1,24 @@
+<div align="center">
+
+<h1 align="center">Animu</h1>
+    <br />
+        <img align="center" width="256" height="256" src="https://avatars.githubusercontent.com/u/79479798?s=200&v=4" />
+    <br />
+</div>
+
+<div align="center">
+    <h3>A Random API Serving Anime Stuffs</h3>
+    <div align="center">
+        <img src="https://img.shields.io/github/contributors/AnimuAPI/Animu" />
+        <img src="https://img.shields.io/bitbucket/issues-raw/AnimuAPI/Animu" />
+        <img alt="Bitbucket open pull requests" src="https://img.shields.io/bitbucket/pr-raw/AnimuAPI/Animu">
+        <img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Fanimu.ml">
+    </div>
+</div>
+
+
+<hr />
+
 # Contributing
 
 All contributions are greatly appreciated, but I recommend creating an issue or replying in a comment to let me know what you are working on first that way we don't overwrite each other.

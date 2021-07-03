@@ -10,7 +10,6 @@ module.exports = async function authHandler(req, res, next) {
       { token: auth },
       { $inc: { req_quoto: -1, req_count: 1 } }
     )
-    console.log(userData)
     // @returns if the user has not provided token in header
     if (!userData) {
       return next(createError(401, 'Unauthorized'))

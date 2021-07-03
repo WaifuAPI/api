@@ -10,14 +10,13 @@ const {
   errorsHandler,
 } = require('./handlers/errors/index')
 require('winston-daily-rotate-file')
-
 const { ipLogger } = require('./handlers/logger/ip')
+const path = require('path')
 
 // Express APP
 const app = express()
 app.use(cors())
 app.set('trust proxy', 1)
-app.use(require('express-status-monitor')())
 
 // Logger
 if (process.env.LOGGER === 'true') {
@@ -51,14 +50,9 @@ if (process.env.LOGGER === 'true') {
   )
 }
 
-// Main website (animu.ml)
-app.get('/', (req, res) => {
-  res.json({
-    code: '200',
-    message:
-      'Join the support server to get auth token https://discord.gg/yyW389c',
-  })
-})
+// Main website (airi.kyoyo.me)
+app.use('/', express.static(path.join(__dirname, 'frontend')))
+
 app.use(ipLogger)
 app.use(routes)
 app.use(handler404, errorsLogger, errorsHandler)

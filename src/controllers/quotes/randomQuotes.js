@@ -1,26 +1,14 @@
 const createError = require('http-errors')
 const requestIp = require('request-ip')
 const moment = require('moment')
-const Facts = require('../../models/schemas/Facts')
-const tagsFilter = require('../../utils/tagsFilter')
-const lengthFilter = require('../../utils/lengthFilter')
+const Quotes = require('../../models/schemas/Quotes')
 
-// Get random Anime Fact
-module.exports = async function getRandomFact(req, res, next) {
+// Get random Anime Quote
+module.exports = async function getRandomQuote(req, res, next) {
   try {
-    const { minLength, maxLength, tags } = req.query
-
     const filter = {}
 
-    if (minLength || maxLength) {
-      filter.length = lengthFilter(minLength, maxLength)
-    }
-
-    if (tags) {
-      filter.tags = tagsFilter(tags)
-    }
-
-    const [result] = await Facts.aggregate([
+    const [result] = await Quotes.aggregate([
       // Apply filters (if any)
       { $match: filter },
       // Select a random document from the results
@@ -29,7 +17,7 @@ module.exports = async function getRandomFact(req, res, next) {
     ])
 
     if (!result) {
-      return next(createError(404, 'Could not find any matching fact'))
+      return next(createError(404, 'Could not find any matching Quote'))
     }
 
     res.status(200).json(result)
