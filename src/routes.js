@@ -13,7 +13,7 @@ const router = Router()
 // Rate Limiter for Fact || Other endpoints
 const Limiter = rateLimit({
   windowMs: 1000, // 1 second
-  max: 15, // limit each IP to 15 requests per windowMs
+  max: 5, // limit each IP to 5 requests per windowMs
   message: {
     status: 429,
     message: 'Too many requests, please try again later.',
