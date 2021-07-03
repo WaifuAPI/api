@@ -12,10 +12,9 @@
         <img src="https://img.shields.io/github/contributors/AnimuAPI/Animu" />
         <img src="https://img.shields.io/bitbucket/issues-raw/AnimuAPI/Animu" />
         <img alt="Bitbucket open pull requests" src="https://img.shields.io/bitbucket/pr-raw/AnimuAPI/Animu">
-        <img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Fanimu.ml">
+        <img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Fairi.kyoyo.me">
     </div>
 </div>
-
 
 <hr />
 
