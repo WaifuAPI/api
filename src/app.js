@@ -10,7 +10,6 @@ const {
   errorsHandler,
 } = require('./handlers/errors/index')
 require('winston-daily-rotate-file')
-
 const { ipLogger } = require('./handlers/logger/ip')
 const path = require('path')
 
