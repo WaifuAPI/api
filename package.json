@@ -1,6 +1,6 @@
 {
   "name": "airi",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Random API Serving Anime stuff",
   "author": "Kyoyo",
   "private": true,
@@ -27,7 +27,7 @@
     "is-interactive": "^1.0.0",
     "moment": "^2.29.1",
     "mongodb": "^3.6.9",
-    "mongoose": "^5.13.1",
+    "mongoose": "^5.13.9",
     "ora": "^5.4.1",
     "path": "^0.12.7",
     "request-ip": "^2.1.3",

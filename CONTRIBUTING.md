@@ -1,4 +1,4 @@
-# Contributing to Animu
+# Contributing to Airi
 
 We love your input! We want to make contributing to this project as easy as possible, whether it's:
 
@@ -29,7 +29,7 @@ Great Feature Requests tend to have:
 
 ## Development Process
 
-Pull requests are the best way to propose changes. We actively welcome your pull requests and invite you to submit pull requests directly <a href="https://github.com/AnimuAPI/Animu/pulls">here</a>, and after review, these can be merged into the project.
+Pull requests are the best way to propose changes. We actively welcome your pull requests and invite you to submit pull requests directly <a href="https://github.com/AiriAPI/Airi/pulls">here</a>, and after review, these can be merged into the project.
 
 ## Pull Requests
 
@@ -40,7 +40,7 @@ Pull requests are the best way to propose changes. We actively welcome your pull
 ## Issues
 
 Please ensure your description is
-clear and has sufficient instructions to be able to reproduce the issue. Report a bug by <a href="https://github.com/AnimuAPI/Animu/issues">opening a new issue</a>; it's that easy!
+clear and has sufficient instructions to be able to reproduce the issue. Report a bug by <a href="https://github.com/AiriAPI/Airi/issues">opening a new issue</a>; it's that easy!
 
 ## Running the API Locally
 
@@ -83,7 +83,7 @@ $ npm run dev
 
 ## License
 
-By contributing to Animu, you agree that your contributions will be licensed
+By contributing to Airi, you agree that your contributions will be licensed
 under the [LICENSE file](LICENSE.md).
 
 [mongodb/atlas]: https://www.mongodb.com/cloud/atlas

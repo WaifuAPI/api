@@ -1,6 +1,6 @@
 <div align="center">
 
-<h1 align="center">Animu</h1>
+<h1 align="center">Airi</h1>
     <br />
         <img align="center" width="256" height="256" src="https://avatars.githubusercontent.com/u/79479798?s=200&v=4" />
     <br />
@@ -9,9 +9,9 @@
 <div align="center">
     <h3>A Random API Serving Anime Stuffs</h3>
     <div align="center">
-        <img src="https://img.shields.io/github/contributors/AnimuAPI/Animu" />
-        <img src="https://img.shields.io/bitbucket/issues-raw/AnimuAPI/Animu" />
-        <img alt="Bitbucket open pull requests" src="https://img.shields.io/bitbucket/pr-raw/AnimuAPI/Animu">
+        <img src="https://img.shields.io/github/contributors/AiriAPI/Airi" />
+        <img src="https://img.shields.io/bitbucket/issues-raw/AiriAPI/Airi" />
+        <img alt="Bitbucket open pull requests" src="https://img.shields.io/bitbucket/pr-raw/AiriAPI/Airi">
         <img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Fairi.kyoyo.me">
     </div>
 </div>

@@ -1,6 +1,4 @@
 body {
-  background-image: url('./public/1.png');
-
   background-color: white;
   padding: 0;
   margin: 0;
@@ -55,7 +53,7 @@ a {
 }
 
 .title a {
-  color: #222324;
+  color: #0070f3;
   text-decoration: none;
 }
 
