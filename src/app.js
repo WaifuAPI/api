@@ -48,12 +48,12 @@ if (process.env.LOGGER === 'true') {
       },
     })
   )
+  app.use(ipLogger)
 }
 
 // Main website (airi.kyoyo.me)
 app.use('/', express.static(path.join(__dirname, 'frontend')))
 
-app.use(ipLogger)
 app.use(routes)
 app.use(handler404, errorsLogger, errorsHandler)
 
