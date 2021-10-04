@@ -27,7 +27,11 @@ mongoose
   })
   .then(() => {
     app.listen(PORT, () =>
-      console.log(`${chalk.green('[SUCCESS]')} API is running on port: ${PORT}`)
+      console.log(
+        `${chalk.green(
+          '[SUCCESS]'
+        )} API is running on: http://localhost:${PORT}/api`
+      )
     )
   })
   .catch(error => {
