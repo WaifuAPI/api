@@ -1,7 +1,6 @@
 const { Router } = require('express')
 const rateLimit = require('express-rate-limit')
 const authHandler = require('./handlers/auth/index')
-const getFactbyId = require('./controllers/facts/getFactbyId')
 const randomFacts = require('./controllers/facts/randomFacts')
 const getAllTags = require('./controllers/tags/listTags')
 const randomWaifus = require('./controllers/waifus/randomWaifus')
@@ -22,7 +21,6 @@ const Limiter = rateLimit({
 
 // Fact Endpoints
 router.get('/api/fact', Limiter, authHandler, randomFacts)
-router.get('/api/facts/:id', Limiter, authHandler, getFactbyId)
 
 // Tags Endpoint
 router.get('/api/alltags', Limiter, authHandler, getAllTags)
