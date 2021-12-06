@@ -66,6 +66,7 @@ const Smug = require('./schemas/Smug')
 const Think = require('./schemas/Think')
 const Thumbsup = require('./schemas/Thumbsup')
 const Tickle = require('./schemas/Tickle')
+const Baka = require('./schemas/Baka')
 
 module.exports = {
   Tags,
@@ -136,4 +137,5 @@ module.exports = {
   Think,
   Thumbsup,
   Tickle,
+  Baka,
 }
