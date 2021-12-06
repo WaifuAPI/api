@@ -69,6 +69,7 @@ const randomLove = require('./controllers/gifs/randomLove')
 const randomLurk = require('./controllers/gifs/randomLurk')
 const randomNervous = require('./controllers/gifs/randomNervous')
 const randomNom = require('./controllers/gifs/randomNom')
+const randomBaka = require('./controllers/gifs/randomBaka')
 
 const router = Router()
 
@@ -163,5 +164,6 @@ router.get('/api/love', Limiter, authHandler, randomLove)
 router.get('/api/lurk', Limiter, authHandler, randomLurk)
 router.get('/api/nervous', Limiter, authHandler, randomNervous)
 router.get('/api/nom', Limiter, authHandler, randomNom)
+router.get('/api/baka', Limiter, authHandler, randomBaka)
 
 module.exports = router
