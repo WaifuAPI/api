@@ -56,7 +56,7 @@ if (process.env.LOGGER === 'true') {
   app.use(ipLogger)
 }
 
-// Main website (airi.kyoyo.me)
+// Main website (animu.ml)
 app.use('/', express.static(path.join(__dirname, 'frontend')))
 
 app.use(routes)

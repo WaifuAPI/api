@@ -1,1 +1,1 @@
-## [Click here](https://github.com/AiriAPI/Documentation) for API Documentaion.
+## [Click here](https://github.com/AnimuAPI/Documentation) for API Documentaion.
