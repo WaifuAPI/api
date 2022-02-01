@@ -1,6 +1,13 @@
+## Announcements
+###### 🕛 01 Feb, 2022
+### 📢 Migration from Public to Private
+This repository will no longer be updated with the latest versions of code. Our hosted version of this API, [__Animu__](https://animu.ml/) **does not run the code in this repository anymore**. The official API's source code has been made private. We will still maintain this repository over time with patches and so but it will depend on the circumstances. And we will only be providing limited, non-obligatory support to self-hosting users **who have not made changes to the code we deem to be significant**.
+
+---
+
 <div align="center">
 
-<h1 align="center">Airi</h1>
+<h1 align="center">Animu</h1>
     <br />
         <img align="center" width="256" height="256" src="https://avatars.githubusercontent.com/u/79479798?s=200&v=4" />
     <br />
@@ -9,10 +16,10 @@
 <div align="center">
     <h3>A Random API Serving Anime Stuffs</h3>
     <div align="center">
-        <img src="https://img.shields.io/github/contributors/AiriAPI/Airi" />
-        <img src="https://img.shields.io/bitbucket/issues-raw/AiriAPI/Airi" />
-        <img alt="Bitbucket open pull requests" src="https://img.shields.io/bitbucket/pr-raw/AiriAPI/Airi">
-        <img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Fairi.kyoyo.me">
+        <img src="https://img.shields.io/github/contributors/AnimuAPI/Animu" />
+        <img src="https://img.shields.io/bitbucket/issues-raw/AnimuAPI/Animu" />
+        <img alt="Bitbucket open pull requests" src="https://img.shields.io/bitbucket/pr-raw/AnimuAPI/Animu">
+        <img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Fanimu.ml">
     </div>
 </div>
 
