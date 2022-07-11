@@ -35,7 +35,7 @@
     "winston-daily-rotate-file": "^4.5.5"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12",
+    "nodemon": "^2.0.19",
     "prettier": "^2.3.2"
   },
   "keywords": [
