@@ -85,8 +85,6 @@ In your database, create a collection called users and create a document with a 
 
 **And you're done!**
 
-
-
 ## License
 
 By contributing to Animu, you agree that your contributions will be licensed
