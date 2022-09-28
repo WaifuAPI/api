@@ -79,7 +79,13 @@ The server will automatically restart when you make changes to the code.
 $ npm run dev
 ```
 
+**5. Creating a token**
+
+In your database, create a collection called users and create a document with a `token` field. You can set it to any value, This will be the token you will use when making requests.
+
 **And you're done!**
+
+
 
 ## License
 
