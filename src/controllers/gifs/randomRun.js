@@ -2,6 +2,7 @@ const createError = require('http-errors')
 const requestIp = require('request-ip')
 const moment = require('moment')
 const Run = require('../../models/schemas/Run')
+const Stats = require('../../models/schemas/Stat')
 
 // Get random Anime Run
 module.exports = async function getRandomRun(req, res, next) {
@@ -22,7 +23,15 @@ module.exports = async function getRandomRun(req, res, next) {
         req
       )} to ${req.path} - ${JSON.stringify(req.query)}`
     )
+    await Stats.findOneAndUpdate (
+      { _id: "systemstats" },
+      { $inc: {  run: 1 } },
+    )
   } catch (error) {
+    await Stats.findOneAndUpdate (
+      { _id: "systemstats" },
+      { $inc: { failed_requests: 1 } },
+    )
     return next(error)
   }
 }

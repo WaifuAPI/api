@@ -2,6 +2,7 @@ const createError = require('http-errors')
 const requestIp = require('request-ip')
 const moment = require('moment')
 const Love = require('../../models/schemas/Love')
+const Stats = require('../../models/schemas/Stat')
 
 // Get random Anime Love
 module.exports = async function getRandomLove(req, res, next) {
@@ -22,7 +23,15 @@ module.exports = async function getRandomLove(req, res, next) {
         req
       )} to ${req.path} - ${JSON.stringify(req.query)}`
     )
+    await Stats.findOneAndUpdate (
+      { _id: "systemstats" },
+      { $inc: {  love: 1 } },
+    )
   } catch (error) {
+    await Stats.findOneAndUpdate (
+      { _id: "systemstats" },
+      { $inc: { failed_requests: 1 } },
+    )
     return next(error)
   }
 }

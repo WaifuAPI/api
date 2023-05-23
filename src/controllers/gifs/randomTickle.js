@@ -2,6 +2,7 @@ const createError = require('http-errors')
 const requestIp = require('request-ip')
 const moment = require('moment')
 const Tickle = require('../../models/schemas/Tickle')
+const Stats = require('../../models/schemas/Stat')
 
 // Get random Anime Tickle
 module.exports = async function getRandomTickle(req, res, next) {
@@ -22,7 +23,15 @@ module.exports = async function getRandomTickle(req, res, next) {
         req
       )} to ${req.path} - ${JSON.stringify(req.query)}`
     )
+    await Stats.findOneAndUpdate (
+      { _id: "systemstats" },
+      { $inc: { tickle: 1 } },
+    )
   } catch (error) {
+    await Stats.findOneAndUpdate (
+      { _id: "systemstats" },
+      { $inc: { failed_requests: 1 } },
+    )
     return next(error)
   }
 }
