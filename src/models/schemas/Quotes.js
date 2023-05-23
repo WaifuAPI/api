@@ -4,7 +4,7 @@ const QuoteSchema = new Schema({
   _id: { type: Number, required: true },
   quote: { type: String, required: true },
   anime: { type: String },
-  said: { type: String, required: true },
+  author: { type: String, required: true },
 })
 
 module.exports = model('Quote', QuoteSchema)

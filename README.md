@@ -1,13 +1,18 @@
 ## Announcements
+
+###### 🕛 23 May, 2023
+### 📢 Migration from Private to Public
+This repository will continue being as open-source while strictly following the [LICENCE](LICENCE.md).
+
 ###### 🕛 01 Feb, 2022
-### 📢 Migration from Public to Private
-This repository will no longer be updated with the latest versions of code. Our hosted version of this API, [__Animu__](https://animu.ml/) **does not run the code in this repository anymore**. The official API's source code has been made private. We will still maintain this repository over time with patches and so but it will depend on the circumstances. And we will only be providing limited, non-obligatory support to self-hosting users **who have not made changes to the code we deem to be significant**.
+### ~~📢 Migration from Public to Private~~
+~~This repository will no longer be updated with the latest versions of code. Our hosted version of this API, [__Waifu.it__](https://waifu.it/) **does not run the code in this repository anymore**. The official API's source code has been made private. We will still maintain this repository over time with patches and so but it will depend on the circumstances. And we will only be providing limited, non-obligatory support to self-hosting users **who have not made changes to the code we deem to be significant**.~~
 
 ---
 
 <div align="center">
 
-<h1 align="center">Animu</h1>
+<h1 align="center">Waifu.it</h1>
     <br />
         <img align="center" width="256" height="256" src="https://avatars.githubusercontent.com/u/79479798?s=200&v=4" />
     <br />

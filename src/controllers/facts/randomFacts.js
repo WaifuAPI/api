@@ -4,6 +4,7 @@ const moment = require('moment')
 const Facts = require('../../models/schemas/Facts')
 const tagsFilter = require('../../utils/tagsFilter')
 const lengthFilter = require('../../utils/lengthFilter')
+const Stats = require('../../models/schemas/Stat')
 
 // Get random Anime Fact
 module.exports = async function getRandomFact(req, res, next) {
@@ -38,7 +39,15 @@ module.exports = async function getRandomFact(req, res, next) {
         req
       )} to ${req.path} - ${JSON.stringify(req.query)}`
     )
+    await Stats.findOneAndUpdate (
+      { _id: "systemstats" },
+      { $inc: { facts: 1 } },
+    )
   } catch (error) {
+    await Stats.findOneAndUpdate (
+      { _id: "systemstats" },
+      { $inc: { failed_requests: 1 } },
+    )
     return next(error)
   }
 }

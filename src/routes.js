@@ -2,9 +2,9 @@ const { Router } = require('express')
 const rateLimit = require('express-rate-limit')
 const authHandler = require('./handlers/auth/index')
 const randomFacts = require('./controllers/facts/randomFacts')
-const getAllTags = require('./controllers/tags/listTags')
+const getAllTags = require('./controllers/utils/listTags')
 const randomWaifus = require('./controllers/waifus/randomWaifus')
-const randomPasswords = require('./controllers/passwords/randomPassword')
+const randomPasswords = require('./controllers/utils/randomPassword')
 const randomQuotes = require('./controllers/quotes/randomQuotes')
 const randomKick = require('./controllers/gifs/randomKick')
 const randomKill = require('./controllers/gifs/randomKill')
@@ -167,3 +167,4 @@ router.get('/api/nom', Limiter, authHandler, randomNom)
 router.get('/api/baka', Limiter, authHandler, randomBaka)
 
 module.exports = router
+

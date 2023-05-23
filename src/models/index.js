@@ -67,8 +67,11 @@ const Think = require('./schemas/Think')
 const Thumbsup = require('./schemas/Thumbsup')
 const Tickle = require('./schemas/Tickle')
 const Baka = require('./schemas/Baka')
+const Stat = require('./schemas/Stat')
+
 
 module.exports = {
+  Stat,
   Tags,
   Facts,
   Users,

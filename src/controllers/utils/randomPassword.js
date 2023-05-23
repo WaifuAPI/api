@@ -1,23 +1,28 @@
 const createError = require('http-errors')
 const requestIp = require('request-ip')
 const moment = require('moment')
-const Pat = require('../../models/schemas/Pat')
+const pass = require('generate-password')
 const Stats = require('../../models/schemas/Stat')
 
-// Get random Anime Pat
-module.exports = async function getRandomPat(req, res, next) {
+// Get random Password
+module.exports = async function getRandomPassword(req, res, next) {
   try {
-    const [result] = await Pat.aggregate([
-      // Select a random document from the results
-      { $sample: { size: 1 } },
-      { $project: { __v: 0, _id: 0 } },
-    ])
 
-    if (!result) {
-      return next(createError(404, 'Could not find any Pat Gif'))
-    }
+    const { charLength } = req.query
 
-    res.status(200).json(result)
+    console.log(charLength)
+    const password = pass.generate({
+      length: charLength || 50,
+      uppercase: true,
+      numbers: true,
+      symbols: true,
+      lowercase: true,
+      strict: true,
+    })
+
+    res.status(200).json({
+      pass: password,
+    })
     console.log(
       `${req.method} | ${moment(Date.now()).format()} ${requestIp.getClientIp(
         req
@@ -25,7 +30,7 @@ module.exports = async function getRandomPat(req, res, next) {
     )
     await Stats.findOneAndUpdate (
       { _id: "systemstats" },
-      { $inc: {  pat: 1 } },
+      { $inc: { password: 1 } },
     )
   } catch (error) {
     await Stats.findOneAndUpdate (

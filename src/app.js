@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 // const winston = require('winston')
 // const expressWinston = require('express-winston')
-// const requestIp = require('request-ip')
+// const requestIp = require('request-ip');
 const routes = require('./routes')
 const {
   handler404,
@@ -56,7 +56,7 @@ if (process.env.LOGGER === 'true') {
   app.use(ipLogger)
 }
 
-// Main website (animu.ml)
+// Main website (waifu.it)
 app.use('/', express.static(path.join(__dirname, 'frontend')))
 
 app.use(routes)
