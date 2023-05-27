@@ -10,7 +10,6 @@ module.exports = async function getRandomPassword(req, res, next) {
 
     const { charLength } = req.query
 
-    console.log(charLength)
     const password = pass.generate({
       length: charLength || 50,
       uppercase: true,
