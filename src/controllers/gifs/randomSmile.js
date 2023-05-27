@@ -1,6 +1,4 @@
 const createError = require('http-errors')
-const requestIp = require('request-ip')
-const moment = require('moment')
 const Smile = require('../../models/schemas/Smile')
 const Stats = require('../../models/schemas/Stat')
 
@@ -18,19 +16,12 @@ module.exports = async function getRandomSmile(req, res, next) {
     }
 
     res.status(200).json(result)
-    console.log(
-      `${req.method} | ${moment(Date.now()).format()} ${requestIp.getClientIp(
-        req
-      )} to ${req.path} - ${JSON.stringify(req.query)}`
-    )
-    await Stats.findOneAndUpdate (
-      { _id: "systemstats" },
-      { $inc: {  smile: 1 } },
-    )
+
+    await Stats.findOneAndUpdate({ _id: 'systemstats' }, { $inc: { smile: 1 } })
   } catch (error) {
-    await Stats.findOneAndUpdate (
-      { _id: "systemstats" },
-      { $inc: { failed_requests: 1 } },
+    await Stats.findOneAndUpdate(
+      { _id: 'systemstats' },
+      { $inc: { failed_requests: 1 } }
     )
     return next(error)
   }

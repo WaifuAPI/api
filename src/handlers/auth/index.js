@@ -14,17 +14,34 @@ module.exports = async function authHandler(req, res, next) {
 
     // @returns if the user has not provided token in header
     if (!userData) {
-      await Stats.findByIdAndUpdate (
-        { _id: "systemstats" },
-        { $inc: { failed_requests: 1, endpoints_requests: 1, daily_requests: 1 } }
+      await Stats.findByIdAndUpdate(
+        { _id: 'systemstats' },
+        {
+          $inc: {
+            failed_requests: 1,
+            endpoints_requests: 1,
+            daily_requests: 1,
+          },
+        }
       )
-      return next(createError(401, 'Invalid API key. Go to https:\/\/docs.waifu.it for more info.'))
+      return next(
+        createError(
+          401,
+          'Invalid API key. Go to https://docs.waifu.it for more info.'
+        )
+      )
     }
     // @returns if the user is banned
     if (userData.banned) {
-      await Stats.findByIdAndUpdate (
-        { _id: "systemstats" },
-        { $inc: { banned_requests: 1, endpoints_requests: 1, daily_requests: 1 } }
+      await Stats.findByIdAndUpdate(
+        { _id: 'systemstats' },
+        {
+          $inc: {
+            banned_requests: 1,
+            endpoints_requests: 1,
+            daily_requests: 1,
+          },
+        }
       )
       return next(createError(403, "You've been banned from using the API."))
     }
@@ -38,9 +55,11 @@ module.exports = async function authHandler(req, res, next) {
     //   )
     // }
 
-    await Stats.findByIdAndUpdate (
-      { _id: "systemstats" },
-      { $inc: { endpoints_requests: 1, success_requests: 1, daily_requests: 1 } }
+    await Stats.findByIdAndUpdate(
+      { _id: 'systemstats' },
+      {
+        $inc: { endpoints_requests: 1, success_requests: 1, daily_requests: 1 },
+      }
     )
 
     return next()

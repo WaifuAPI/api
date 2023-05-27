@@ -167,4 +167,3 @@ router.get('/api/nom', Limiter, authHandler, randomNom)
 router.get('/api/baka', Limiter, authHandler, randomBaka)
 
 module.exports = router
-
