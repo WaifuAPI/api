@@ -41,7 +41,7 @@ const StatSchema = new Schema({
   bully: { type: Number, default: 0 },
   bye: { type: Number, default: 0 },
   chase: { type: Number, default: 0 },
-  chatbot: { type: Number, default: 0 },
+  owoify: { type: Number, default: 0 },
   cheer: { type: Number, default: 0 },
   client: { type: Number, default: 0 },
   cringe: { type: Number, default: 0 },
