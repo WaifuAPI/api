@@ -1,6 +1,4 @@
 const createError = require('http-errors')
-const requestIp = require('request-ip')
-const moment = require('moment')
 const Quotes = require('../../models/schemas/Quotes')
 const Stats = require('../../models/schemas/Stat')
 
@@ -28,11 +26,7 @@ module.exports = async function getRandomQuote(req, res, next) {
     }
 
     res.status(200).json(result)
-    console.log(
-      `${req.method} | ${moment(Date.now()).format()} ${requestIp.getClientIp(
-        req
-      )} to ${req.path} - ${JSON.stringify(req.query)}`
-    )
+
     await Stats.findOneAndUpdate(
       { _id: 'systemstats' },
       { $inc: { quotes: 1 } }
