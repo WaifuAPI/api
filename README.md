@@ -21,10 +21,11 @@ This repository will continue being as open-source while strictly following the 
 <div align="center">
     <h3>A Random API Serving Anime Stuffs</h3>
     <div align="center">
-        <img src="https://img.shields.io/github/contributors/AnimuAPI/Animu" />
-        <img src="https://img.shields.io/bitbucket/issues-raw/AnimuAPI/Animu" />
-        <img alt="Bitbucket open pull requests" src="https://img.shields.io/bitbucket/pr-raw/AnimuAPI/Animu">
-        <img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Fanimu.ml">
+        <img src="https://img.shields.io/github/contributors/WaifuAPI/Waifu.it?color=%236CB4EE" />
+        <img alt="GitHub issues" src="https://img.shields.io/github/issues/WaifuAPI/Waifu.it?color=%236CB4EE">
+        <img alt="Bitbucket open pull requests" src="https://img.shields.io/github/issues-pr/WaifuAPI/Waifu.it?color=%236CB4EE">
+        <img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Fwaifu.it">
+        <img alt="Discord Server" src="https://img.shields.io/discord/479300008118714388?color=%236CB4EE">
     </div>
 </div>
 
