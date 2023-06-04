@@ -5,10 +5,10 @@ const Stats = require('../../models/schemas/Stat')
 module.exports = async function authHandler(req, res, next) {
   try {
     // Request Header AUTH var
-    const { Authorization } = req.headers
+    const key = req.headers.authorization
     // Verifies if the {auth} exists in the database
     const userData = await Users.findOneAndUpdate(
-      { token: Authorization },
+      { token: key },
       { $inc: { req_quoto: -1, req_count: 1 } }
     )
 
