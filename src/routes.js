@@ -86,6 +86,11 @@ const Limiter = rateLimit({
   },
 })
 
+// Base API
+router.get('/api', (req, res) => {
+  res.redirect("https://docs.waifu.it/list-of-endpoints");
+})
+
 // Fact Endpoints
 router.get('/api/fact', Limiter, authHandler, randomFacts)
 
