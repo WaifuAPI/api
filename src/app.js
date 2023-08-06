@@ -16,8 +16,8 @@ const routes = require('./routes');
 const dev = process.env.NODE_ENV !== 'production';
 
 // Initialize Next.js app
-// const nextApp = next({ dev, dir: path.join(__dirname, '../website') });
-// const handle = nextApp.getRequestHandler();
+const nextApp = next({ dev, dir: path.join(__dirname, '../website') });
+const handle = nextApp.getRequestHandler();
 
 // Express APP
 const app = express();
@@ -48,9 +48,9 @@ app.use(routes);
 app.use('/', express.static(path.join(__dirname, '../website/.next')));
 
 // Handle server-side rendering for Next.js pages
-// app.get('*', (req, res) => {
-//   return handle(req, res);
-// });
+app.get('*', (req, res) => {
+  return handle(req, res);
+});
 
 // Error handling middleware
 app.use(handler404, errorsLogger, errorsHandler);
