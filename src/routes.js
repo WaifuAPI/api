@@ -73,6 +73,7 @@ const randomLurk = require('./controllers/gifs/randomLurk')
 const randomNervous = require('./controllers/gifs/randomNervous')
 const randomNom = require('./controllers/gifs/randomNom')
 const randomBaka = require('./controllers/gifs/randomBaka')
+const userEndpoint = require('./controllers/utils/user')
 
 const router = Router()
 
@@ -88,8 +89,10 @@ const Limiter = rateLimit({
 
 // Base API
 router.get('/api', (req, res) => {
-  res.redirect("https://docs.waifu.it/list-of-endpoints");
+  res.redirect('https://docs.waifu.it/list-of-endpoints')
 })
+
+router.all('/api/user', userEndpoint)
 
 // Fact Endpoints
 router.get('/api/fact', Limiter, authHandler, randomFacts)

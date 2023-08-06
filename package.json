@@ -10,8 +10,12 @@
     "node": ">=18.x"
   },
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "start": "npm run build:website && npm run api",
+    "build:website": "cd website && npm run build",
+    "api": "node src/index.js",
+    "dev": "npm run dev:website & npm run dev:api",
+    "dev:website": "cd website && npm run dev",
+    "dev:api": "nodemon src/index.js"
   },
   "dependencies": {
     "chalk": "^4.1.2",
@@ -28,6 +32,7 @@
     "moment": "^2.29.4",
     "mongodb": "^3.6.9",
     "mongoose": "^5.13.20",
+    "next": "^13.4.12",
     "ora": "^5.4.1",
     "owoify-js": "^2.0.0",
     "path": "^0.12.7",
@@ -36,6 +41,7 @@
     "winston-daily-rotate-file": "^4.7.1"
   },
   "devDependencies": {
+    "concurrently": "^8.2.0",
     "nodemon": "^2.0.22",
     "prettier": "^2.8.8"
   },

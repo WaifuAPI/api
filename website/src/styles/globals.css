@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Example: import from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 1.5s ease-in-out;
+}
+
+
+/* Custom CSS for the DashboardButton */
+.dashboard-button {
+  font-size: 16px;
+  font-family: 'Indie Flower', cursive;
+}
+
+/* Adjust styles for small screens (e.g., mobile) */
+@media (max-width: 767px) {
+  .dashboard-button {
+    font-size: 14px;
+    padding: 8px 12px;
+    top: 8px;
+    left: 8px;
+  }
+}
+
+/* Adjust styles for medium screens (e.g., tablets) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .dashboard-button {
+    font-size: 16px;
+    padding: 10px 16px;
+    top: 12px;
+    left: 12px;
+  }
+}
+
+/* Adjust styles for large screens (e.g., desktops) */
+@media (min-width: 1024px) {
+  .dashboard-button {
+    font-size: 18px;
+    padding: 12px 20px;
+    top: 16px;
+    left: 16px;
+  }
+}
+
