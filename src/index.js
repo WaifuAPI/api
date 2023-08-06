@@ -6,7 +6,7 @@ const chalk = require('chalk')
 const app = require('./app')
 
 // PORT
-const PORT = 4000
+const PORT = process.env.PORT || 4000
 
 // NODE ENV LOGGER
 if (process.env.NODE_ENV === 'development') {

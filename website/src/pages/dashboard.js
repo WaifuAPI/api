@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import LoadingSpinner from './components/LoadingSpinner'
 import generateToken from '../utils/generateToken'
+import Image from 'next/image'
 
 const Dashboard = () => {
   const router = useRouter()
@@ -254,7 +255,7 @@ const Dashboard = () => {
                 <div className="relative flex items-center">
                   {' '}
                   {/* Add flex and items-center */}
-                  <img
+                  <Image
                     src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
                     alt={user.username}
                     className="w-8 h-8 rounded-full cursor-pointer"
