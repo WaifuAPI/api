@@ -58,7 +58,7 @@ module.exports = async function userEndpoint(req, res, next) {
 
         await Users.create(newUser)
 
-        return res.status(201).json(newUser)
+        return res.status(201).json(newUser.token)
       }
 
       return res.status(200).json(user.token)
