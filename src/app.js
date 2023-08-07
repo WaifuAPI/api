@@ -1,7 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const next = require('next');
-const path = require('path');
 
 // Import custom error handlers and logger
 const {
@@ -12,12 +10,6 @@ const {
 const { ipLogger } = require('./handlers/logger/ip');
 const routes = require('./routes');
 
-// Set development mode
-const dev = process.env.NODE_ENV !== 'production';
-
-// Initialize Next.js app
-const nextApp = next({ dev, dir: path.join(__dirname, '../website') });
-const handle = nextApp.getRequestHandler();
 
 // Express APP
 const app = express();
@@ -43,14 +35,6 @@ if (process.env.LOGGER === 'true') {
 
 // Custom API routes
 app.use(routes);
-
-// Serve Next.js static files from the frontend folder
-app.use('/', express.static(path.join(__dirname, '../website/.next')));
-
-// Handle server-side rendering for Next.js pages
-app.get('*', (req, res) => {
-  return handle(req, res);
-});
 
 // Error handling middleware
 app.use(handler404, errorsLogger, errorsHandler);
