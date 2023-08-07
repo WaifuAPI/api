@@ -10,12 +10,8 @@
     "node": ">=18.x"
   },
   "scripts": {
-    "start": "npm run build:website && npm run api",
-    "build:website": "cd website && npm run build",
-    "api": "node src/index.js",
-    "dev": "npm run dev:website & npm run dev:api",
-    "dev:website": "cd website && npm run dev",
-    "dev:api": "nodemon src/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "dependencies": {
     "chalk": "^4.1.2",
