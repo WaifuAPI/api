@@ -3,7 +3,6 @@ const dotenv = require('dotenv')
 
 dotenv.config({ path: require('find-config')('.env') })
 const nextConfig = {
-  output: 'export',
   reactStrictMode: true,
   env: {
     MONGODB_URI: process.env.MONGODB_URI,
