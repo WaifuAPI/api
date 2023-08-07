@@ -45,7 +45,7 @@ if (process.env.LOGGER === 'true') {
 app.use(routes);
 
 // Serve Next.js static files from the frontend folder
-app.use('/', express.static(path.join(__dirname, '../website/out')));
+app.use('/', express.static(path.join(__dirname, '../website/.next')));
 
 // Handle server-side rendering for Next.js pages
 app.get('*', (req, res) => {
