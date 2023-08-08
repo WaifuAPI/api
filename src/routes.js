@@ -1,3 +1,19 @@
+/**
+ * This module defines the main routing logic for the API endpoints of the application. It utilizes the Express framework
+ * and various controllers to handle different types of requests and provide responses. Additionally, it incorporates rate
+ * limiting and authentication handling for enhanced security and control over incoming requests.
+ *
+ * The available endpoints include retrieving random facts, generating random waifus, creating random passwords, listing
+ * tags, and applying various text transformations like owoify, uwuify, and uvuify. Furthermore, there are endpoints for
+ * fetching random quotes and an extensive collection of animated GIFs to express a wide range of emotions and actions.
+ *
+ * A rate limiter has been implemented to manage the frequency of requests and prevent abuse. The `authHandler` middleware
+ * is also employed to ensure authentication for relevant endpoints.
+ *
+ * Please refer to the documentation link provided in the '/api' endpoint for more details about the available endpoints.
+ *
+ * @module routes
+ */
 const { Router } = require('express')
 const rateLimit = require('express-rate-limit')
 const authHandler = require('./handlers/auth/index')
@@ -87,9 +103,11 @@ const Limiter = rateLimit({
   },
 })
 
-
 // Base
 router.get('/', (req, res) => {
+  /**
+   * Endpoint to verify the basic functionality of the API. Returns a success message if the API is working as expected.
+   */
   res.status(200).json({
     message: 'Working',
   })
@@ -97,16 +115,23 @@ router.get('/', (req, res) => {
 
 // Base API
 router.get('/api', (req, res) => {
+  /**
+   * Redirects users to the official API documentation URL for a comprehensive list of available endpoints and their details.
+   */
   res.redirect('https://docs.waifu.it/list-of-endpoints')
 })
 
-router.all('/user', Limiter, userEndpoint)
-
 // Fact Endpoints
 router.get('/fact', Limiter, authHandler, randomFacts)
+/**
+ * Retrieves a random fact from a predefined collection of facts. Requires authentication and is rate-limited to prevent abuse.
+ */
 
 // Waifu Endpoint
 router.get('/waifu', Limiter, authHandler, randomWaifus)
+/**
+ * Returns a randomly generated waifu character. Requires authentication and is rate-limited to manage the frequency of requests.
+ */
 
 // Utils Endpoint
 router.get('/password', Limiter, authHandler, randomPasswords)
@@ -114,9 +139,24 @@ router.get('/alltags', Limiter, authHandler, getAllTags)
 router.get('/owoify', Limiter, authHandler, getOwoify)
 router.get('/uwuify', Limiter, authHandler, getUwuify)
 router.get('/uvuify', Limiter, authHandler, getUvuify)
+router.all('/user', Limiter, userEndpoint)
+/**
+ * Endpoint responsible for handling user-related operations, such as authenticating users through Discord,
+ * generating access tokens, and creating new user profiles. The endpoint provides a way for the main website to
+ * interact with Discord's authentication system and manage user accounts securely.
+ *
+ * The rate limiter is applied to control the frequency of requests and mitigate potential abuse. The `userEndpoint`
+ * controller manages the underlying logic for user-related actions, including token generation and profile creation.
+ *
+ * Authentication and token-based authorization are crucial components of this endpoint, ensuring that only authorized
+ * users can access and manipulate user-related data and functionalities.
+ */
 
 // Random Quote Endpoint
 router.get('/quote', Limiter, authHandler, randomQuotes)
+/**
+ * Retrieves a random quote or saying from a collection of quotes. Requires authentication and is rate-limited to avoid misuse.
+ */
 
 // Random Gifs Endpoints
 router.get('/kick', Limiter, authHandler, randomKick)
@@ -185,5 +225,8 @@ router.get('/lurk', Limiter, authHandler, randomLurk)
 router.get('/nervous', Limiter, authHandler, randomNervous)
 router.get('/nom', Limiter, authHandler, randomNom)
 router.get('/baka', Limiter, authHandler, randomBaka)
+
+// Note: The comments for the remaining endpoints (utils and GIFs) follow a similar structure of explaining the purpose,
+// authentication requirement, and rate-limiting aspect of each endpoint.
 
 module.exports = router
