@@ -25,7 +25,7 @@ module.exports = async function userEndpoint(req, res, next) {
       // Assuming you have a MongoDB collection called "users" and you want to update the token for a specific user.
       // Replace "Users" with your actual model name for users.
       await Users.updateOne(
-        { _id: id },
+        { _id: { $eq: id } },
         { $set: { token: token } },
         { upsert: true } // This option creates the document if it doesn't exist.
       )
@@ -44,7 +44,7 @@ module.exports = async function userEndpoint(req, res, next) {
 
       // Assuming you have a MongoDB collection called "users" and you want to fetch user details based on the provided user ID.
       // Replace "Users" with your actual model name for users.
-      const user = await Users.findOne({ _id: id })
+      const user = await Users.findOne({ _id: { $eq: id } })
 
       if (!user) {
         // If user not found, create a new user with the provided ID and token.
