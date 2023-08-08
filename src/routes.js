@@ -100,7 +100,7 @@ router.get('/api', (req, res) => {
   res.redirect('https://docs.waifu.it/list-of-endpoints')
 })
 
-router.all('/user', userEndpoint)
+router.all('/user', Limiter, userEndpoint)
 
 // Fact Endpoints
 router.get('/fact', Limiter, authHandler, randomFacts)
