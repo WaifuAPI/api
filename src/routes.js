@@ -105,7 +105,7 @@ const Limiter = rateLimit({
 });
 
 // Base
-router.get('/api/', (req, res) => {
+router.get('/', (req, res) => {
   /**
    * Endpoint to verify the basic functionality of the API. Returns a success message if the API is working as expected.
    */
