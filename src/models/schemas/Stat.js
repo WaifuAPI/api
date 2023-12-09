@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose')
+import mongoose from 'mongoose';
+const { Schema, model } = mongoose;
 
 const StatSchema = new Schema({
   _id: { type: String, required: true, default: 'system' },
@@ -82,6 +83,8 @@ const StatSchema = new Schema({
   punch: { type: Number, default: 0 },
   quotes: { type: Number, default: 0 },
   password: { type: Number, default: 0 },
-})
+});
 
-module.exports = model('Stat', StatSchema)
+const Stat = model('Stat', StatSchema);
+
+export default Stat;

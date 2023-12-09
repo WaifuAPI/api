@@ -1,26 +1,28 @@
-const Waifus = require('../../models/schemas/Waifus')
-const Stats = require('../../models/schemas/Stat')
+import Waifus from '../../models/schemas/Waifus.js';
+import Stats from '../../models/schemas/Stat.js';
 
 // Get a random waifu
-module.exports = async function getRandomWaifu(req, res, next) {
+const getRandomWaifu = async (req, res, next) => {
   try {
     const [result] = await Waifus.aggregate([
       // Select a random document from the results
       { $sample: { size: 1 } },
       { $project: { __v: 0 } },
-    ])
+    ]);
 
-    res.status(200).json(result)
+    res.status(200).json(result);
 
     await Stats.findOneAndUpdate(
       { _id: 'systemstats' },
       { $inc: { waifus: 1 } }
-    )
+    );
   } catch (error) {
     await Stats.findOneAndUpdate(
       { _id: 'systemstats' },
       { $inc: { failed_requests: 1 } }
-    )
-    return next(error)
+    );
+    next(error);
   }
-}
+};
+
+export default getRandomWaifu;

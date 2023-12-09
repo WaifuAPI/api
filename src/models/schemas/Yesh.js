@@ -1,8 +1,10 @@
-const { Schema, model } = require('mongoose')
+import mongoose from 'mongoose';
+const { Schema, model } = mongoose;
 
 const YeshSchema = new Schema({
   _id: { type: Number },
   url: { type: String, required: true },
-})
+});
 
-module.exports = model('Yesh', YeshSchema)
+export default model('Yesh', YeshSchema);
+

@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose')
+import mongoose from 'mongoose';
+const { Schema, model } = mongoose;
 
 const WaifuSchema = new Schema({
   _id: { type: Number },
@@ -19,6 +20,9 @@ const WaifuSchema = new Schema({
     upvote: { type: Number },
     downvote: { type: Number },
   },
-})
+});
 
-module.exports = model('Waifu', WaifuSchema)
+const Waifu = model('Waifu', WaifuSchema);
+
+export default Waifu;
+

@@ -1,41 +1,49 @@
-const createError = require('http-errors')
-const Quotes = require('../../models/schemas/Quotes')
-const Stats = require('../../models/schemas/Stat')
+import createError from 'http-errors';
+import Quotes from '../../models/schemas/Quotes.js';
+import Stats from '../../models/schemas/Stat.js';
 
-// Get random Anime Quote
-module.exports = async function getRandomQuote(req, res, next) {
+/**
+ * Gets a random anime quote with optional character filter and updates system statistics.
+ *
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @param {Function} next - Express next middleware function.
+ */
+const getRandomQuote = async (req, res, next) => {
   try {
-    const { character } = req.query
+    const { character } = req.query;
 
-    const filter = {}
+    // Create a filter object based on the optional character parameter
+    const filter = character ? { author: character } : {};
 
-    if (character) {
-      filter.author = character
-    }
-
+    // Aggregate to match the filter, select a random quote, and project excluding version field
     const [result] = await Quotes.aggregate([
-      // Apply filters (if any)
-      { $match: filter },
-      // Select a random document from the results
-      { $sample: { size: 1 } },
+      { $match: filter }, // Apply filters (if any)
+      { $sample: { size: 1 } }, // Select a random document from the results
       { $project: { __v: 0 } },
-    ])
+    ]);
 
+    // If no quote is found, return a 404 error
     if (!result) {
-      return next(createError(404, 'Could not find any matching Quote'))
+      return next(createError(404, 'Could not find any matching Quote'));
     }
 
-    res.status(200).json(result)
+    // Respond with the random quote
+    res.status(200).json(result);
 
+    // Update system statistics for quotes
     await Stats.findOneAndUpdate(
       { _id: 'systemstats' },
       { $inc: { quotes: 1 } }
-    )
+    );
   } catch (error) {
+    // Update system statistics for failed requests
     await Stats.findOneAndUpdate(
       { _id: 'systemstats' },
       { $inc: { failed_requests: 1 } }
-    )
-    return next(error)
+    );
+    return next(error);
   }
-}
+};
+
+export default getRandomQuote;

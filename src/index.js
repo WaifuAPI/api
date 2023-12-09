@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 
-require('dotenv').config()
-const mongoose = require('mongoose')
-const chalk = require('chalk')
-const app = require('./app')
+import 'dotenv/config';
+import mongoose from 'mongoose';
+import chalk from 'chalk';
+import app from './app.js';
 
 // PORT
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 4000;
 
 // NODE ENV LOGGER
 if (process.env.NODE_ENV === 'development') {
@@ -14,10 +14,10 @@ if (process.env.NODE_ENV === 'development') {
     `${chalk.yellow(
       '[DEBUG]'
     )} You've enabled developer mode. Now your console will be dirty.`
-  )
+  );
 }
 
-// Connect to database, then start's the Express server
+// Connect to the database, then start the Express server
 mongoose
   .connect(process.env.MONGODB_URI, {
     useUnifiedTopology: true,
@@ -32,11 +32,11 @@ mongoose
           '[SUCCESS]'
         )} API is running on: http://localhost:${PORT}/api`
       )
-    )
+    );
   })
-  .catch(error => {
-    console.error(error)
-  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 // const Users = require('./models/schemas/Users')
 

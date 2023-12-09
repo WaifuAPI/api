@@ -1,15 +1,14 @@
-const express = require('express');
-const cors = require('cors');
+import express from 'express';
+import cors from 'cors';
 
 // Import custom error handlers and logger
-const {
+import {
   handler404,
   errorsLogger,
   errorsHandler,
-} = require('./handlers/errors/index');
-const { ipLogger } = require('./handlers/logger/ip');
-const routes = require('./routes');
-
+} from './handlers/errors/index.js';
+import { ipLogger } from './handlers/logger/ip.js';
+import routes from './routes.js';
 
 // Express APP
 const app = express();
@@ -26,7 +25,6 @@ app.use(express.json());
 // Middleware to parse URL-encoded bodies
 app.use(express.urlencoded({ extended: true }));
 
-
 // Logger middleware
 // Uncomment the following block if you want to enable IP logging
 if (process.env.LOGGER === 'true') {
@@ -39,4 +37,4 @@ app.use(routes);
 // Error handling middleware
 app.use(handler404, errorsLogger, errorsHandler);
 
-module.exports = app;
+export default app;

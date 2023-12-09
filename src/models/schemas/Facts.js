@@ -1,10 +1,13 @@
-const { Schema, model } = require('mongoose')
+import mongoose from 'mongoose';
+const { Schema, model } = mongoose;
 
 const FactSchema = new Schema({
   _id: { type: Number },
   fact: { type: String, required: true },
   tags: { type: [String], required: true },
   length: { type: Number },
-})
+});
 
-module.exports = model('Fact', FactSchema)
+const Fact = model('Fact', FactSchema);
+
+export default Fact;

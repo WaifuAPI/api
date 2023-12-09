@@ -1,16 +1,16 @@
-const createError = require('http-errors')
-const Users = require('../../models/schemas/Users')
-const Stats = require('../../models/schemas/Stat')
+import createError from 'http-errors';
+import Users from '../../models/schemas/Users.js';
+import Stats from '../../models/schemas/Stat.js';
 
-module.exports = async function authHandler(req, res, next) {
+const authHandler = async (req, res, next) => {
   try {
     // Request Header AUTH var
-    const key = req.headers.authorization
+    const key = req.headers.authorization;
     // Verifies if the {auth} exists in the database
     const userData = await Users.findOneAndUpdate(
       { token: key },
       { $inc: { req_quoto: -1, req_count: 1 } }
-    )
+    );
 
     // @returns if the user has not provided token in header
     if (!userData) {
@@ -23,13 +23,13 @@ module.exports = async function authHandler(req, res, next) {
             daily_requests: 1,
           },
         }
-      )
+      );
       return next(
         createError(
           401,
           'Invalid API key. Go to https://docs.waifu.it for more info.'
         )
-      )
+      );
     }
     // @returns if the user is banned
     if (userData.banned) {
@@ -42,8 +42,8 @@ module.exports = async function authHandler(req, res, next) {
             daily_requests: 1,
           },
         }
-      )
-      return next(createError(403, "You've been banned from using the API."))
+      );
+      return next(createError(403, "You've been banned from using the API."));
     }
     // If request limit exhausted throw this [ Currently Disabled ]
     // if (userData.req_quoto <= 0) {
@@ -52,7 +52,7 @@ module.exports = async function authHandler(req, res, next) {
     //       403,
     //       "You've exhausted your request limits. Buy Premium to increase it more."
     //     )
-    //   )
+    //   );
     // }
 
     await Stats.findByIdAndUpdate(
@@ -60,10 +60,12 @@ module.exports = async function authHandler(req, res, next) {
       {
         $inc: { endpoints_requests: 1, success_requests: 1, daily_requests: 1 },
       }
-    )
+    );
 
-    return next()
+    return next();
   } catch (error) {
-    return next(error)
+    return next(error);
   }
-}
+};
+
+export default authHandler;

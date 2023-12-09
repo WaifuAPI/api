@@ -1,28 +1,31 @@
-const createError = require('http-errors')
-const Smile = require('../../models/schemas/Smile')
-const Stats = require('../../models/schemas/Stat')
+
+import createError from 'http-errors';
+import Smile from '../../models/schemas/Smile.js';
+import Stats from '../../models/schemas/Stat.js';
 
 // Get random Anime Smile
-module.exports = async function getRandomSmile(req, res, next) {
+const getRandomSmile = async (req, res, next) => {
   try {
     const [result] = await Smile.aggregate([
       // Select a random document from the results
       { $sample: { size: 1 } },
       { $project: { __v: 0, _id: 0 } },
-    ])
+    ]);
 
     if (!result) {
-      return next(createError(404, 'Could not find any Smile Gif'))
+      return next(createError(404, 'Could not find any Smile Gif'));
     }
 
-    res.status(200).json(result)
+    res.status(200).json(result);
 
-    await Stats.findOneAndUpdate({ _id: 'systemstats' }, { $inc: { smile: 1 } })
+    await Stats.findOneAndUpdate({ _id: 'systemstats' }, { $inc: { smile: 1 } });
   } catch (error) {
     await Stats.findOneAndUpdate(
       { _id: 'systemstats' },
       { $inc: { failed_requests: 1 } }
-    )
-    return next(error)
+    );
+    return next(error);
   }
-}
+};
+
+export default getRandomSmile;
