@@ -7,7 +7,7 @@
  * tags, and applying various text transformations like owoify, uwuify, and uvuify. Furthermore, there are endpoints for
  * fetching random quotes and an extensive collection of animated GIFs to express a wide range of emotions and actions.
  *
- * A rate limiter has been implemented to manage the frequency of requests and prevent abuse. The `authHandler` middleware
+ * A rate createRateLimiter() has been implemented to manage the frequency of requests and prevent abuse. The `handleAuthentication` middleware
  * is also employed to ensure authentication for relevant endpoints.
  *
  * Please refer to the documentation link provided in the '/api' endpoint for more details about the available endpoints.
@@ -16,8 +16,8 @@
  */
 
 import { Router } from 'express';
-import rateLimit from 'express-rate-limit';
-import authHandler from './handlers/auth/index.js';
+import createRateLimiter from './handlers/rateLimit.js';
+import handleAuthentication from './handlers/handleAuthentication.js';
 import randomFacts from './controllers/facts/randomFacts.js';
 import getAllTags from './controllers/utils/listTags.js';
 import getOwoify from './controllers/utils/owoify.js';
@@ -94,16 +94,6 @@ import userEndpoint from './controllers/utils/user.js';
 
 const router = Router();
 
-// Rate Limiter for Fact || Other endpoints
-const Limiter = rateLimit({
-  windowMs: 1000, // 1 second
-  max: 2, // limit each IP to 5 requests per windowMs
-  message: {
-    status: 429,
-    message: 'Too many requests, please try again later.',
-  },
-});
-
 // Base
 router.get('/', (req, res) => {
   /**
@@ -123,30 +113,30 @@ router.get('/api', (req, res) => {
 });
 
 // Fact Endpoints
-router.get('/api/fact', Limiter, randomFacts);
+router.get('/api/fact', createRateLimiter(), randomFacts);
 /**
  * Retrieves a random fact from a predefined collection of facts. Requires authentication and is rate-limited to prevent abuse.
  */
 
 // Waifu Endpoint
-router.get('/api/waifu', Limiter, randomWaifus);
+router.get('/api/waifu', createRateLimiter(), randomWaifus);
 /**
  * Returns a randomly generated waifu character. Requires authentication and is rate-limited to manage the frequency of requests.
  */
 
 // Utils Endpoints
-router.get('/api/password', Limiter, authHandler, randomPasswords);
-router.get('/api/alltags', Limiter, authHandler, getAllTags);
-router.get('/api/owoify', Limiter, authHandler, getOwoify);
-router.get('/api/uwuify', Limiter, authHandler, getUwuify);
-router.get('/api/uvuify', Limiter, authHandler, getUvuify);
-router.all('/api/user', Limiter, userEndpoint);
+router.get('/api/password', createRateLimiter(), handleAuthentication, randomPasswords);
+router.get('/api/alltags', createRateLimiter(), handleAuthentication, getAllTags);
+router.get('/api/owoify', createRateLimiter(), handleAuthentication, getOwoify);
+router.get('/api/uwuify', createRateLimiter(), handleAuthentication, getUwuify);
+router.get('/api/uvuify', createRateLimiter(), handleAuthentication, getUvuify);
+router.all('/api/user', createRateLimiter(), userEndpoint);
 /**
  * Endpoint responsible for handling user-related operations, such as authenticating users through Discord,
  * generating access tokens, and creating new user profiles. The endpoint provides a way for the main website to
  * interact with Discord's authentication system and manage user accounts securely.
  *
- * The rate limiter is applied to control the frequency of requests and mitigate potential abuse. The `userEndpoint`
+ * The ratelimit is applied to control the frequency of requests and mitigate potential abuse. The `userEndpoint`
  * controller manages the underlying logic for user-related actions, including token generation and profile creation.
  *
  * Authentication and token-based authorization are crucial components of this endpoint, ensuring that only authorized
@@ -154,78 +144,78 @@ router.all('/api/user', Limiter, userEndpoint);
  */
 
 // Random Quote Endpoint
-router.get('/api/quote', Limiter, authHandler, randomQuotes);
+router.get('/api/quote', createRateLimiter(), handleAuthentication, randomQuotes);
 /**
  * Retrieves a random quote or saying from a collection of quotes. Requires authentication and is rate-limited to avoid misuse.
  */
 
 // Random Gifs Endpoints
-router.get('/api/kick', Limiter, authHandler, randomKick);
-router.get('/api/kill', Limiter, authHandler, randomKill);
-router.get('/api/kiss', Limiter, authHandler, randomKissu);
-router.get('/api/midfing', Limiter, authHandler, randomMidfing);
-router.get('/api/nuzzle', Limiter, authHandler, randomNuzzle);
-router.get('/api/punch', Limiter, authHandler, randomPunch);
-router.get('/api/shoot', Limiter, authHandler, randomShoot);
-router.get('/api/sip', Limiter, authHandler, randomSip);
-router.get('/api/sleepy', Limiter, authHandler, randomSleepy);
-router.get('/api/smile', Limiter, authHandler, randomSmile);
-router.get('/api/stab', Limiter, authHandler, randomStab);
-router.get('/api/stare', Limiter, authHandler, randomStare);
-router.get('/api/suicide', Limiter, authHandler, randomSuicide);
-router.get('/api/tease', Limiter, authHandler, randomTease);
-router.get('/api/wag', Limiter, authHandler, randomWag);
-router.get('/api/bite', Limiter, authHandler, randomBite);
-router.get('/api/blush', Limiter, authHandler, randomBlush);
-router.get('/api/bonk', Limiter, authHandler, randomBonk);
-router.get('/api/bored', Limiter, authHandler, randomBored);
-router.get('/api/bully', Limiter, authHandler, randomBully);
-router.get('/api/bye', Limiter, authHandler, randomBye);
-router.get('/api/chase', Limiter, authHandler, randomChase);
-router.get('/api/cheer', Limiter, authHandler, randomCheer);
-router.get('/api/dab', Limiter, authHandler, randomDab);
-router.get('/api/die', Limiter, authHandler, randomDie);
-router.get('/api/disgust', Limiter, authHandler, randomDisgust);
-router.get('/api/feed', Limiter, authHandler, randomFeed);
-router.get('/api/hi', Limiter, authHandler, randomHi);
-router.get('/api/hold', Limiter, authHandler, randomHold);
-router.get('/api/hug', Limiter, authHandler, randomHug);
-router.get('/api/Nope', Limiter, authHandler, randomNope);
-router.get('/api/panic', Limiter, authHandler, randomPanic);
-router.get('/api/pat', Limiter, authHandler, randomPat);
-router.get('/api/peck', Limiter, authHandler, randomPeck);
-router.get('/api/poke', Limiter, authHandler, randomPoke);
-router.get('/api/punch', Limiter, authHandler, randomPunch);
-router.get('/api/pout', Limiter, authHandler, randomPout);
-router.get('/api/run', Limiter, authHandler, randomRun);
-router.get('/api/sad', Limiter, authHandler, randomSad);
-router.get('/api/shrug', Limiter, authHandler, randomShrug);
-router.get('/api/slap', Limiter, authHandler, randomSlap);
-router.get('/api/smug', Limiter, authHandler, randomSmug);
-router.get('/api/think', Limiter, authHandler, randomThink);
-router.get('/api/thumbsup', Limiter, authHandler, randomThumbsup);
-router.get('/api/tickle', Limiter, authHandler, randomTickle);
-router.get('/api/triggered', Limiter, authHandler, randomTriggered);
-router.get('/api/wave', Limiter, authHandler, randomWave);
-router.get('/api/wink', Limiter, authHandler, randomWink);
-router.get('/api/yes', Limiter, authHandler, randomYes);
-router.get('/api/angry', Limiter, authHandler, randomAngry);
-router.get('/api/cringe', Limiter, authHandler, randomCringe);
-router.get('/api/cry', Limiter, authHandler, randomCry);
-router.get('/api/cuddle', Limiter, authHandler, randomCuddle);
-router.get('/api/dance', Limiter, authHandler, randomDance);
-router.get('/api/facepalm', Limiter, authHandler, randomFacepalm);
-router.get('/api/glomp', Limiter, authHandler, randomGlomp);
-router.get('/api/happy', Limiter, authHandler, randomHappy);
-router.get('/api/highfive', Limiter, authHandler, randomHighfive);
-router.get('/api/hug', Limiter, authHandler, randomHug);
-router.get('/api/laugh', Limiter, authHandler, randomLaugh)
-router.get('/api/lick', Limiter, authHandler, randomLick)
-router.get('/api/love', Limiter, authHandler, randomLove)
-router.get('/api/lurk', Limiter, authHandler, randomLurk)
-router.get('/api/nervous', Limiter, authHandler, randomNervous)
-router.get('/api/nom', Limiter, authHandler, randomNom)
-router.get('/api/baka', Limiter, authHandler, randomBaka)
+router.get('/api/kick', createRateLimiter(), handleAuthentication, randomKick);
+router.get('/api/kill', createRateLimiter(), handleAuthentication, randomKill);
+router.get('/api/kiss', createRateLimiter(), handleAuthentication, randomKissu);
+router.get('/api/midfing', createRateLimiter(), handleAuthentication, randomMidfing);
+router.get('/api/nuzzle', createRateLimiter(), handleAuthentication, randomNuzzle);
+router.get('/api/punch', createRateLimiter(), handleAuthentication, randomPunch);
+router.get('/api/shoot', createRateLimiter(), handleAuthentication, randomShoot);
+router.get('/api/sip', createRateLimiter(), handleAuthentication, randomSip);
+router.get('/api/sleepy', createRateLimiter(), handleAuthentication, randomSleepy);
+router.get('/api/smile', createRateLimiter(), handleAuthentication, randomSmile);
+router.get('/api/stab', createRateLimiter(), handleAuthentication, randomStab);
+router.get('/api/stare', createRateLimiter(), handleAuthentication, randomStare);
+router.get('/api/suicide', createRateLimiter(), handleAuthentication, randomSuicide);
+router.get('/api/tease', createRateLimiter(), handleAuthentication, randomTease);
+router.get('/api/wag', createRateLimiter(), handleAuthentication, randomWag);
+router.get('/api/bite', createRateLimiter(), handleAuthentication, randomBite);
+router.get('/api/blush', createRateLimiter(), handleAuthentication, randomBlush);
+router.get('/api/bonk', createRateLimiter(), handleAuthentication, randomBonk);
+router.get('/api/bored', createRateLimiter(), handleAuthentication, randomBored);
+router.get('/api/bully', createRateLimiter(), handleAuthentication, randomBully);
+router.get('/api/bye', createRateLimiter(), handleAuthentication, randomBye);
+router.get('/api/chase', createRateLimiter(), handleAuthentication, randomChase);
+router.get('/api/cheer', createRateLimiter(), handleAuthentication, randomCheer);
+router.get('/api/dab', createRateLimiter(), handleAuthentication, randomDab);
+router.get('/api/die', createRateLimiter(), handleAuthentication, randomDie);
+router.get('/api/disgust', createRateLimiter(), handleAuthentication, randomDisgust);
+router.get('/api/feed', createRateLimiter(), handleAuthentication, randomFeed);
+router.get('/api/hi', createRateLimiter(), handleAuthentication, randomHi);
+router.get('/api/hold', createRateLimiter(), handleAuthentication, randomHold);
+router.get('/api/hug', createRateLimiter(), handleAuthentication, randomHug);
+router.get('/api/Nope', createRateLimiter(), handleAuthentication, randomNope);
+router.get('/api/panic', createRateLimiter(), handleAuthentication, randomPanic);
+router.get('/api/pat', createRateLimiter(), handleAuthentication, randomPat);
+router.get('/api/peck', createRateLimiter(), handleAuthentication, randomPeck);
+router.get('/api/poke', createRateLimiter(), handleAuthentication, randomPoke);
+router.get('/api/punch', createRateLimiter(), handleAuthentication, randomPunch);
+router.get('/api/pout', createRateLimiter(), handleAuthentication, randomPout);
+router.get('/api/run', createRateLimiter(), handleAuthentication, randomRun);
+router.get('/api/sad', createRateLimiter(), handleAuthentication, randomSad);
+router.get('/api/shrug', createRateLimiter(), handleAuthentication, randomShrug);
+router.get('/api/slap', createRateLimiter(), handleAuthentication, randomSlap);
+router.get('/api/smug', createRateLimiter(), handleAuthentication, randomSmug);
+router.get('/api/think', createRateLimiter(), handleAuthentication, randomThink);
+router.get('/api/thumbsup', createRateLimiter(), handleAuthentication, randomThumbsup);
+router.get('/api/tickle', createRateLimiter(), handleAuthentication, randomTickle);
+router.get('/api/triggered', createRateLimiter(), handleAuthentication, randomTriggered);
+router.get('/api/wave', createRateLimiter(), handleAuthentication, randomWave);
+router.get('/api/wink', createRateLimiter(), handleAuthentication, randomWink);
+router.get('/api/yes', createRateLimiter(), handleAuthentication, randomYes);
+router.get('/api/angry', createRateLimiter(), handleAuthentication, randomAngry);
+router.get('/api/cringe', createRateLimiter(), handleAuthentication, randomCringe);
+router.get('/api/cry', createRateLimiter(), handleAuthentication, randomCry);
+router.get('/api/cuddle', createRateLimiter(), handleAuthentication, randomCuddle);
+router.get('/api/dance', createRateLimiter(), handleAuthentication, randomDance);
+router.get('/api/facepalm', createRateLimiter(), handleAuthentication, randomFacepalm);
+router.get('/api/glomp', createRateLimiter(), handleAuthentication, randomGlomp);
+router.get('/api/happy', createRateLimiter(), handleAuthentication, randomHappy);
+router.get('/api/highfive', createRateLimiter(), handleAuthentication, randomHighfive);
+router.get('/api/hug', createRateLimiter(), handleAuthentication, randomHug);
+router.get('/api/laugh', createRateLimiter(), handleAuthentication, randomLaugh);
+router.get('/api/lick', createRateLimiter(), handleAuthentication, randomLick);
+router.get('/api/love', createRateLimiter(), handleAuthentication, randomLove);
+router.get('/api/lurk', createRateLimiter(), handleAuthentication, randomLurk);
+router.get('/api/nervous', createRateLimiter(), handleAuthentication, randomNervous);
+router.get('/api/nom', createRateLimiter(), handleAuthentication, randomNom);
+router.get('/api/baka', createRateLimiter(), handleAuthentication, randomBaka);
 
 // Note: The comments for the remaining endpoints (utils and GIFs) follow a similar structure of explaining the purpose,
 // authentication requirement, and rate-limiting aspect of each endpoint.
