@@ -1,25 +1,22 @@
-## Announcements
+## 🚀 Exciting News!
 
-###### 🕛 23 May, 2023
-### 📢 Migration from Private to Public
-This repository will continue being as open-source while strictly following the [LICENCE](LICENCE.md).
+### 📅 May 23, 2023
 
-###### 🕛 01 Feb, 2022
-### ~~📢 Migration from Public to Private~~
-~~This repository will no longer be updated with the latest versions of code. Our hosted version of this API, [__Waifu.it__](https://waifu.it/) **does not run the code in this repository anymore**. The official API's source code has been made private. We will still maintain this repository over time with patches and so but it will depend on the circumstances. And we will only be providing limited, non-obligatory support to self-hosting users **who have not made changes to the code we deem to be significant**.~~
+We're thrilled to announce a major transformation! Our repository is now fully open-source, embracing a new era of collaboration. Dive into the code, explore its possibilities, and contribute to the future of this amazing project. All within the bounds of our [LICENSE](LICENCE.md).
 
 ---
 
 <div align="center">
 
-<h1 align="center">Waifu.it</h1>
+<h1 align="center">🎉 Waifu.it Unleashed!</h1>
     <br />
         <img align="center" width="256" height="256" src="https://avatars.githubusercontent.com/u/79479798?s=200&v=4" />
     <br />
 </div>
 
 <div align="center">
-    <h3>A Random API Serving Anime Stuffs</h3>
+    <h3>🌟 <b>A Random API Serving Anime Wonders</b>
+</h3>
     <div align="center">
         <img src="https://img.shields.io/github/contributors/WaifuAPI/Waifu.it?color=%236CB4EE" />
         <img alt="GitHub issues" src="https://img.shields.io/github/issues/WaifuAPI/Waifu.it?color=%236CB4EE">
@@ -31,44 +28,31 @@ This repository will continue being as open-source while strictly following the 
 
 <hr />
 
-# Contributing
+# How You Can Contribute
 
-All contributions are greatly appreciated, but I recommend creating an issue or replying in a comment to let me know what you are working on first that way we don't overwrite each other.
+Your input is invaluable! Before diving in, let's sync up to avoid overlapping efforts.
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on this project.
+## 🌈 Contribution Categories
 
-## Issues
+1. **Feature Requests/Enhancements**
+2. **Bug Reports**
+3. **Questions/Feedback**
 
-- Feature requests/enhancements
-- Bug reports
-- Questions/feedback
+## 🌿 Branching Strategy
 
-## Branches
+- **production:** The live, running version. Please refrain from direct changes.
+- **staging:** All proposed changes go here. Submit a [pull request](https://help.github.com/en/articles/about-pull-requests) for review.
 
-- production -> don't touch, this is what's running in production
+## 🚀 Submitting Your Changes
 
-- staging -> [pull request][pr] this branch for everything
+1. **Fork** the repository on GitHub.
+2. **Clone** your forked repo locally.
+3. Make your changes and **commit** them.
+4. **Push** your changes back to your fork.
+5. When ready, create a [pull request](https://help.github.com/en/articles/about-pull-requests) for our review.
 
-## Pull Requests
+---
 
-All pull requests are welcome!
+Explore the [DOCS](DOCS.md) for detailed information.
 
-- [Fork][fork] the repository on GitHub.
-
-- [Clone][cloning] the forked repo to your local machine.
-
-- Do you changes
-
-- Commit your changes
-
-- Push your changes back up to your fork.
-
-- When you're ready, submit a [pull request][pr] so that we can review your changes.
-
-## Documentation
-
-[DOCS.md](DOCS.md)
-
-[fork]: https://help.github.com/en/articles/fork-a-repo
-[cloning]: https://help.github.com/en/articles/cloning-a-repository
-[pr]: https://help.github.com/en/articles/about-pull-requests
+Let's make Waifu.it even more fantastic together! 🌟
