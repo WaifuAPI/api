@@ -1,7 +1,7 @@
 import createError from 'http-errors';
-import Facts from '../../../models/schemas/Facts.js';
-import tagsFilter from '../../../utils/tagsFilter.js';
-import lengthFilter from '../../../utils/lengthFilter.js';
+import Facts from '../../../models/schemas/Fact.js';
+import tagsFilter from '../../../modules/tagsFilter.js';
+import lengthFilter from '../../../modules/lengthFilter.js';
 import Stats from '../../../models/schemas/Stat.js';
 
 /**
@@ -47,10 +47,7 @@ const getRandomFact = async (req, res, next) => {
     await Stats.findOneAndUpdate({ _id: 'systemstats' }, { $inc: { facts: 1 } });
   } catch (error) {
     // Update system statistics for failed requests
-    await Stats.findOneAndUpdate(
-      { _id: 'systemstats' },
-      { $inc: { failed_requests: 1 } }
-    );
+    await Stats.findOneAndUpdate({ _id: 'systemstats' }, { $inc: { failed_requests: 1 } });
     return next(error);
   }
 };
