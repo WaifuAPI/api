@@ -32,13 +32,13 @@
     "ora": "^5.4.1",
     "owoify-js": "^2.0.0",
     "path": "^0.12.7",
-    "request-ip": "^2.2.0",
+    "request-ip": "^3.3.0",
     "winston": "^3.10.0",
     "winston-daily-rotate-file": "^4.7.1"
   },
   "devDependencies": {
     "concurrently": "^8.2.0",
-    "nodemon": "^2.0.22",
+    "nodemon": "^3.0.2",
     "prettier": "^2.8.8"
   },
   "keywords": [
