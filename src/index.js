@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
 // Importing configuration modules
-import './modules/config/config.js';
+import '../config.js';
 import 'dotenv/config';
 
 // Importing external modules
