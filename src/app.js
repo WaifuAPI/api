@@ -2,12 +2,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-
+import pkg from '../package.json' assert { type: 'json' };
 /*** Importing custom error handlers and logger middleware ***/
 import {
-  handle404,    /*** @params: req, res, next ***/
-  logErrors,    /*** @params: err, req, res, next ***/
-  errorHandler, /*** @params: err, req, res, next ***/
+  handle404 /*** @params: req, res, next ***/,
+  logErrors /*** @params: err, req, res, next ***/,
+  errorHandler /*** @params: err, req, res, next ***/,
 } from './middlewares/errors.js';
 import { logIP } from './middlewares/logger.js';
 import routesV3 from './routes/v3/index.js';
@@ -45,8 +45,25 @@ if (process.env.LOGGER === 'true') {
 app.use(bodyParser.json());
 
 /*** Custom API routes ***/
-app.use('/api/v4', routesV4);
 app.use(routesV3);
+/**
+ * Route: GET /api/v4
+ * Description: Endpoint to verify the basic functionality of the API. Returns a success message if the API is working as expected.
+ * @name VerifyAPI
+ * @function
+ * @memberof routes
+ * @inner
+ * @param {express.Request} req - Express request object.
+ * @param {express.Response} res - Express response object.
+ * @returns {void}
+ */
+app.get('/api/v4', (req, res) => {
+  res.status(200).json({
+    version: pkg.version,
+    message: 'API is functioning correctly.',
+  });
+});
+app.use('/api/v4', routesV4);
 
 /**
  * @apiMiddleware

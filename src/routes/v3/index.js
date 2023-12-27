@@ -112,6 +112,16 @@ router.get('/api', (req, res) => {
   res.redirect('https://docs.waifu.it/list-of-endpoints');
 });
 
+// Route: GET /api/v3
+// Description: Endpoint to verify the basic functionality of the API. Returns a success message if the API is working as expected.
+router.get('/api/v3', (req, res) => {
+  // Response with a success message and the current API version
+  res.status(200).json({
+    version: '3.4.14',
+    message: 'API is functioning correctly.',
+  });
+});
+
 // Fact Endpoints
 router.get('/api/fact', createRateLimiter(), authorize(config.roles.USER), randomFacts);
 /**
