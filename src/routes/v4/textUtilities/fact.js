@@ -31,7 +31,7 @@ router
    * @returns {function} Express middleware function that handles rate limiting.
    *
    */
-  .get(createRateLimiter(), authorize(config.roles.USER), getRandomFact)
+  .get(authorize(config.roles.USER), createRateLimiter(), getRandomFact)
   /**
    * @api {post} v4/fact Increment Fact Data
    * @apiDescription Increment data related to facts (only accessible by admins).
@@ -54,7 +54,7 @@ router
    * @returns {function} Express middleware function that handles rate limiting.
    *
    */
-  .post(createRateLimiter(), authorize(config.roles.ADMIN), incrementData('Fact'));
+  .post(authorize(config.roles.ADMIN), createRateLimiter(), incrementData('Fact'));
 
 // Export the router
 export default router;
