@@ -1,8 +1,8 @@
 import createError from 'http-errors';
-import uwuify from 'owoify-js';
+import uvuify from 'owoify-js';
 import Stats from '../../../models/schemas/Stat.js';
 
-const getOwofiyText = async (req, res, next) => {
+const getUvufiyText = async (req, res, next) => {
   try {
     const { text } = req.query;
 
@@ -11,12 +11,12 @@ const getOwofiyText = async (req, res, next) => {
     }
 
     res.status(200).json({
-      text: uwuify(text),
+      text: uvuify(text),
     });
 
     await Stats.findOneAndUpdate(
       { _id: 'systemstats' },
-      { $inc: { uwuify: 1 } }
+      { $inc: { uvuify: 1 } }
     );
   } catch (error) {
     await Stats.findOneAndUpdate(
@@ -27,4 +27,4 @@ const getOwofiyText = async (req, res, next) => {
   }
 };
 
-export default getOwofiyText;
+export default getUvufiyText;
