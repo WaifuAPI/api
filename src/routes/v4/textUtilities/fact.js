@@ -3,7 +3,9 @@ import { Router } from 'express';
 import getRandomFact from '../../../controllers/v4/textUtilities/fact.js';
 import createRateLimiter from '../../../middlewares/rateLimit.js';
 import authorize from '../../../middlewares/authorize.js';
-import incrementData from '../../../modules/database/add.js';
+import incrementData from '../../../middlewares/database/add.js';
+import updateData from '../../../middlewares/database/update.js';
+import deleteData from '../../../middlewares/database/delete.js';
 
 const router = Router();
 
@@ -12,7 +14,6 @@ router
   /**
    * @api {get} v4/fact Get a Random Fact
    * @apiDescription Retrieve a random fact.
-   * @apiVersion 4.0.0
    * @apiName GetRandomFact
    * @apiGroup Fact
    * @apiPermission user
@@ -34,17 +35,16 @@ router
   .get(authorize(config.roles.USER), createRateLimiter(), getRandomFact)
   /**
    * @api {post} v4/fact Increment Fact Data
-   * @apiDescription Increment data related to facts (only accessible by admins).
-   * @apiVersion 4.0.0
+   * @apiDescription Increment data related to facts (only accessible by database moderators).
    * @apiName IncrementFactData
    * @apiGroup Fact
-   * @apiPermission admin
+   * @apiPermission database_moderator
    *
-   * @apiHeader {String} Authorization Admin's access token.
+   * @apiHeader {String} Authorization Database Moderator's access token.
    *
    * @apiSuccess {Object} result Result of the data incrementation.
    *
-   * @apiError (Unauthorized 401) Unauthorized Only authenticated admins can access the data.
+   * @apiError (Unauthorized 401) Unauthorized Only authenticated database moderator can access the data.
    * @apiError (Forbidden 403) Forbidden Only users can access the data.
    * @apiError (Too Many Requests 429) TooManyRequests The client has exceeded the allowed number of requests within the time window.
    * @apiError (Internal Server Error 500) InternalServerError An error occurred while processing the rate limit.
@@ -54,7 +54,51 @@ router
    * @returns {function} Express middleware function that handles rate limiting.
    *
    */
-  .post(authorize(config.roles.ADMIN), createRateLimiter(), incrementData('Fact'));
+  .post(authorize(config.roles.DB_MOD), createRateLimiter(), incrementData('Fact'));
 
+router
+  .route('/:id')
+  /**
+   * @api {patch} v4/fact/:id Update Fact Data
+   * @apiDescription Update data related to facts with a specific ID (only accessible by database moderators).
+   * @apiName UpdateFactData
+   * @apiGroup Fact
+   * @apiPermission database_moderator
+   *
+   * @apiHeader {String} Authorization database moderator access token.
+   *
+   * @apiSuccess {Object} result Result of the data update.
+   *
+   * @apiError (Unauthorized 401) Unauthorized Only authenticated database moderator can access the data.
+   * @apiError (Forbidden 403) Forbidden Only users can access the data.
+   * @apiError (Too Many Requests 429) TooManyRequests The client has exceeded the allowed number of requests within the time window.
+   * @apiError (Internal Server Error 500) InternalServerError An error occurred while processing the rate limit.
+   *
+   * @function createRateLimit
+   * @description Creates a rate limiter middleware to control the frequency of requests.
+   * @returns {function} Express middleware function that handles rate limiting.
+   */
+  .patch(authorize(config.roles.DB_MOD), createRateLimiter(), updateData('Fact'))
+  /**
+   * @api {delete} v4/fact/:id Delete Fact Data
+   * @apiDescription Delete data related to fact with a specific ID (only accessible by admins).
+   * @apiName DeleteFactData
+   * @apiGroup Fact
+   * @apiPermission admin
+   *
+   * @apiHeader {String} Authorization Admin's access token.
+   *
+   * @apiSuccess {Object} result Result of the data deletion.
+   *
+   * @apiError (Unauthorized 401) Unauthorized Only authenticated admins can access the data.
+   * @apiError (Forbidden 403) Forbidden Only users can access the data.
+   * @apiError (Too Many Requests 429) TooManyRequests The client has exceeded the allowed number of requests within the time window.
+   * @apiError (Internal Server Error 500) InternalServerError An error occurred while processing the rate limit.
+   *
+   * @function createRateLimit
+   * @description Creates a rate limiter middleware to control the frequency of requests.
+   * @returns {function} Express middleware function that handles rate limiting.
+   */
+  .delete(authorize(config.roles.ADMIN), createRateLimiter(), deleteData('Fact'));
 // Export the router
 export default router;
