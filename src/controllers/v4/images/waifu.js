@@ -1,4 +1,4 @@
-import Waifus from '../../../models/schemas/Waifus.js';
+import Waifus from '../../../models/schemas/Waifu.js';
 import Stats from '../../../models/schemas/Stat.js';
 
 // Get a random waifu
@@ -12,15 +12,9 @@ const getRandomWaifu = async (req, res, next) => {
 
     res.status(200).json(result);
 
-    await Stats.findOneAndUpdate(
-      { _id: 'systemstats' },
-      { $inc: { waifus: 1 } }
-    );
+    await Stats.findOneAndUpdate({ _id: 'systemstats' }, { $inc: { waifus: 1 } });
   } catch (error) {
-    await Stats.findOneAndUpdate(
-      { _id: 'systemstats' },
-      { $inc: { failed_requests: 1 } }
-    );
+    await Stats.findOneAndUpdate({ _id: 'systemstats' }, { $inc: { failed_requests: 1 } });
     next(error);
   }
 };
