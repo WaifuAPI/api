@@ -4,7 +4,7 @@ import Stats from '../../../models/schemas/Stat.js';
 /**
  * Generates a random password with specified characteristics.
  *
- * @function getRandomPassword
+ * @function
  * @async
  * @param {Object} req - Express request object.
  * @param {Object} res - Express response object.
@@ -13,11 +13,19 @@ import Stats from '../../../models/schemas/Stat.js';
  * @throws {Error} If there is an error during the password generation or database update.
  *
  * @returns {Object} JSON object containing the generated password.
- * @returns {String} pass - The generated password.
+ * @property {String} pass - The generated password.
  *
+ * @example
+ * // Example usage in Express route handler
+ * getRandomPassword(req, res, next);
  */
 const getRandomPassword = async (req, res, next) => {
   try {
+    /**
+     * Extracts the desired character length for the password.
+     * @type {number}
+     * @default 50
+     */
     const { charLength } = req.query;
 
     // Generate a random password with specified characteristics
@@ -30,6 +38,11 @@ const getRandomPassword = async (req, res, next) => {
       strict: true,
     });
 
+    /**
+     * Responds with a JSON object containing the generated password.
+     * @type {Object}
+     * @property {String} pass - The generated password.
+     */
     res.status(200).json({
       pass: password,
     });
@@ -37,7 +50,10 @@ const getRandomPassword = async (req, res, next) => {
     // Update system statistics for generated passwords
     await Stats.findOneAndUpdate({ _id: 'systemstats' }, { $inc: { password: 1 } });
   } catch (error) {
-    // Update system statistics for failed requests
+    /**
+     * Update system statistics for failed requests
+     * @type {Object}
+     */
     await Stats.findOneAndUpdate({ _id: 'systemstats' }, { $inc: { failed_requests: 1 } });
     return next(error);
   }
