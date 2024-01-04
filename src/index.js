@@ -9,37 +9,60 @@ import mongoose from 'mongoose';
 import chalk from 'chalk';
 import app from './app.js';
 
-// Setting up the server port
-const PORT = process.env.PORT || 4000;
+/**
+ * Server setup script for initializing the Express server and connecting to the MongoDB database.
+ *
+ * @function
+ * @throws {Error} If there is an error during database connection or server start.
+ *
+ * @returns {void}
+ */
+const setupServer = async () => {
+  try {
+    /**
+     * Setting up the server port.
+     * @type {number}
+     */
+    const PORT = process.env.PORT || 4000;
 
-/*
-  Logging developer mode information for the Node environment
-*/
-if (process.env.NODE_ENV === 'development') {
-  console.log(`${chalk.yellow('[DEBUG]')} Developer mode enabled. Console logging is active.`);
-}
+    /**
+     * Logging developer mode information for the Node environment.
+     * @type {string}
+     */
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`${chalk.yellow('[DEBUG]')} Developer mode enabled. Console logging is active.`);
+    }
 
-/*
-  Connect to the MongoDB database, then start the Express server
-*/
-mongoose
-  .connect(process.env.MONGODB_URI, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
-  .then(() => {
-    /*
-      Starting the Express server and logging success message
-    */
+    /**
+     * Connecting to the MongoDB database.
+     * @type {mongoose.Connection}
+     */
+    const dbConnection = await mongoose.connect(process.env.MONGODB_URI, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+    });
+
+    /**
+     * Starting the Express server and logging success message.
+     * @type {void}
+     */
     app.listen(PORT, () => {
       console.log(`${chalk.green('[SUCCESS]')} API is running on: http://localhost:${PORT}/api`);
     });
-  })
-  .catch(error => {
-    /*
-      Logging errors during database connection
-    */
+
+    // Return the database connection for potential future use
+    return dbConnection;
+  } catch (error) {
+    /**
+     * Logging errors during database connection or server start.
+     * @type {Error}
+     */
     console.error(error);
-  });
+    throw error;
+  }
+};
+
+// Call the setup function
+setupServer();
