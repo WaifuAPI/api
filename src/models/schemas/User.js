@@ -1,50 +1,118 @@
 import mongoose from 'mongoose';
 
 /**
- * User Schema for storing user information.
- * @typedef {Object} UserSchema
- * @property {string} _id - Unique identifier for the user.
- * @property {string} email - User's email address. (required)
- * @property {string} password - User's password. (required)
- * @property {string} token - Authentication token for the user.
- * @property {boolean} banned - Flag indicating whether the user is banned. (default: false)
- * @property {Array<{ timestamp: Date, reason: string, isBanned: boolean }>} status_history - Array to store history of status changes with timestamp, reason, and ban/unban flag.
- * @property {number} req_quota - User's request quota. (default: 900)
- * @property {number} req_count - Number of requests made by the user. (default: 0)
- * @property {boolean} token_reset - Flag indicating whether the user's token needs to be reset. (default: false)
- * @property {Date} createdAt - Date and time when the user account was created. (default: current date and time)
- * @property {number} rateLimit - Request rate limit for the user. (default: 20)
- * @property {Array<string>} roles - Array of roles assigned to the user. Possible roles: developer, admin, moderator, database_moderator, premium, user.
+ * Represents the schema for the User model.
+ * @class UserSchema
  */
-
-const userSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
+  /**
+   * Unique identifier for the user.
+   * @type {string}
+   */
   _id: { type: String },
+
+  /**
+   * User's email address.
+   * @type {string}
+   * @required
+   */
   email: { type: String, required: true },
+
+  /**
+   * User's hashed password.
+   * @type {string}
+   * @required
+   */
   password: { type: String, required: true },
+
+  /**
+   * Authentication token for the user.
+   * @type {string}
+   */
   token: { type: String },
+
+  /**
+   * Flag indicating whether the user is banned.
+   * @type {boolean}
+   * @default false
+   */
   banned: { type: Boolean, default: false },
+
+  /**
+   * Array to store the history of status changes with timestamp, reason, and ban/unban flag.
+   * @type {Array<{ timestamp: Date, reason: string, isBanned: boolean }>}
+   */
   status_history: [
     {
+      /**
+       * Timestamp of the status change.
+       * @type {Date}
+       * @default Date.now
+       */
       timestamp: { type: Date, default: Date.now },
+
+      /**
+       * The reason for the status change.
+       * @type {string}
+       */
       reason: { type: String },
+
+      /**
+       * Flag indicating whether the user is banned at this status change.
+       * @type {boolean}
+       */
       isBanned: { type: Boolean },
     },
   ],
+
+  /**
+   * User's request quota.
+   * @type {number}
+   * @default 900
+   */
   req_quota: { type: Number, default: 900 },
+
+  /**
+   * Number of requests made by the user.
+   * @type {number}
+   * @default 0
+   */
   req_count: { type: Number, default: 0 },
+
+  /**
+   * Flag indicating whether the user's token needs to be reset.
+   * @type {boolean}
+   * @default false
+   */
   token_reset: { type: Boolean, default: false },
-  createdAt: {
-    type: Date,
-    default: Date.now(),
-  },
+
+  /**
+   * Date and time when the user account was created.
+   * @type {Date}
+   * @default Date.now
+   */
+  createdAt: { type: Date, default: Date.now() },
+
+  /**
+   * Request rate limit for the user.
+   * @type {number}
+   * @default 20
+   */
   rateLimit: { type: Number, default: 20 },
-  roles: { type: [String], default: ['user'] }, // Default role is 'user', additional roles can be added as needed
+
+  /**
+   * Array of roles assigned to the user.
+   * @type {Array<string>}
+   * @default ['user']
+   */
+  roles: { type: [String], default: ['user'] },
 });
 
 /**
  * User model for interacting with the 'Users' collection in MongoDB.
+ * @class User
  * @type {mongoose.Model<UserSchema>}
  */
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', UserSchema);
 
 export default User;

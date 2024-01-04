@@ -1,13 +1,42 @@
 import mongoose from 'mongoose';
-const { Schema, model } = mongoose;
 
-const FactSchema = new Schema({
+/**
+ * Represents the schema for the Fact model.
+ * @class FactSchema
+ */
+const FactSchema = new mongoose.Schema({
+  /**
+   * Unique identifier for the fact.
+   * @type {Number}
+   */
   _id: { type: Number },
+
+  /**
+   * The actual fact text.
+   * @type {string}
+   * @required
+   */
   fact: { type: String, required: true },
+
+  /**
+   * Tags associated with the fact.
+   * @type {Array<string>}
+   * @required
+   */
   tags: { type: [String], required: true },
+
+  /**
+   * The length of the fact.
+   * @type {Number}
+   */
   length: { type: Number },
 });
 
-const Fact = model('Fact', FactSchema);
+/**
+ * Fact model for storing facts.
+ * @class Fact
+ * @type {mongoose.Model<FactSchema>}
+ */
+const Fact = mongoose.model('Fact', FactSchema);
 
 export default Fact;
