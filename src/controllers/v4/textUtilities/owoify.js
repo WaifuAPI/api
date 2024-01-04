@@ -9,7 +9,7 @@ import Stats from '../../../models/schemas/Stat.js';
  * @param {Object} res - Express response object.
  * @param {Function} next - Express next middleware function.
  */
-const getOwofiyText = async (req, res, next) => {
+const getOwoifyText = async (req, res, next) => {
   try {
     const { text } = req.query;
 
@@ -24,18 +24,12 @@ const getOwofiyText = async (req, res, next) => {
     });
 
     // Update system statistics for Owofied texts
-    await Stats.findOneAndUpdate(
-      { _id: 'systemstats' },
-      { $inc: { owoify: 1 } }
-    );
+    await Stats.findOneAndUpdate({ _id: 'systemstats' }, { $inc: { owoify: 1 } });
   } catch (error) {
     // Update system statistics for failed requests
-    await Stats.findOneAndUpdate(
-      { _id: 'systemstats' },
-      { $inc: { failed_requests: 1 } }
-    );
+    await Stats.findOneAndUpdate({ _id: 'systemstats' }, { $inc: { failed_requests: 1 } });
     return next(error);
   }
 };
 
-export default getOwofiyText;
+export default getOwoifyText;
