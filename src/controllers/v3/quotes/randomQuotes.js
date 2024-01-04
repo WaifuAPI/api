@@ -1,5 +1,5 @@
 import createError from 'http-errors';
-import Quotes from '../../../models/schemas/Quotes.js';
+import Quotes from '../../../models/schemas/Quote.js';
 import Stats from '../../../models/schemas/Stat.js';
 
 /**
@@ -32,16 +32,10 @@ const getRandomQuote = async (req, res, next) => {
     res.status(200).json(result);
 
     // Update system statistics for quotes
-    await Stats.findOneAndUpdate(
-      { _id: 'systemstats' },
-      { $inc: { quotes: 1 } }
-    );
+    await Stats.findOneAndUpdate({ _id: 'systemstats' }, { $inc: { quotes: 1 } });
   } catch (error) {
     // Update system statistics for failed requests
-    await Stats.findOneAndUpdate(
-      { _id: 'systemstats' },
-      { $inc: { failed_requests: 1 } }
-    );
+    await Stats.findOneAndUpdate({ _id: 'systemstats' }, { $inc: { failed_requests: 1 } });
     return next(error);
   }
 };
