@@ -45,6 +45,10 @@ if (process.env.LOGGER === 'true') {
 app.use(bodyParser.json());
 
 /*** Custom API routes ***/
+/**
+ * Route: GET /api/v3
+ * @returns {void}
+ */
 app.use(routesV3);
 /**
  * Route: GET /api/v4

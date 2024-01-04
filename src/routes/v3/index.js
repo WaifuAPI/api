@@ -123,24 +123,24 @@ router.get('/api/v3', (req, res) => {
 });
 
 // Fact Endpoints
-router.get('/api/fact', createRateLimiter(), authorize(config.roles.USER), randomFacts);
+router.get('/api/v3/fact', createRateLimiter(), authorize(config.roles.USER), randomFacts);
 /**
  * Retrieves a random fact from a predefined collection of facts. Requires authentication and is rate-limited to prevent abuse.
  */
 
 // Waifu Endpoint
-router.get('/api/waifu', createRateLimiter(), authorize(config.roles.USER), randomWaifus);
+router.get('/api/v3/waifu', createRateLimiter(), authorize(config.roles.USER), randomWaifus);
 /**
  * Returns a randomly generated waifu character. Requires authentication and is rate-limited to manage the frequency of requests.
  */
 
 // Utils Endpoints
-router.get('/api/password', createRateLimiter(), authorize(config.roles.USER), randomPasswords);
-router.get('/api/alltags', createRateLimiter(), authorize(config.roles.USER), getAllTags);
-router.get('/api/owoify', createRateLimiter(), authorize(config.roles.USER), getOwoify);
-router.get('/api/uwuify', createRateLimiter(), authorize(config.roles.USER), getUwuify);
-router.get('/api/uvuify', createRateLimiter(), authorize(config.roles.USER), getUvuify);
-router.all('/api/user', createRateLimiter(), userEndpoint);
+router.get('/api/v3/password', createRateLimiter(), authorize(config.roles.USER), randomPasswords);
+router.get('/api/v3/alltags', createRateLimiter(), authorize(config.roles.USER), getAllTags);
+router.get('/api/v3/owoify', createRateLimiter(), authorize(config.roles.USER), getOwoify);
+router.get('/api/v3/uwuify', createRateLimiter(), authorize(config.roles.USER), getUwuify);
+router.get('/api/v3/uvuify', createRateLimiter(), authorize(config.roles.USER), getUvuify);
+router.all('/api/v3/user', createRateLimiter(), userEndpoint);
 /**
  * Endpoint responsible for handling user-related operations, such as authenticating users through Discord,
  * generating access tokens, and creating new user profiles. The endpoint provides a way for the main website to
@@ -154,78 +154,78 @@ router.all('/api/user', createRateLimiter(), userEndpoint);
  */
 
 // Random Quote Endpoint
-router.get('/api/quote', createRateLimiter(), authorize(config.roles.USER), randomQuotes);
+router.get('/api/v3/quote', createRateLimiter(), authorize(config.roles.USER), randomQuotes);
 /**
  * Retrieves a random quote or saying from a collection of quotes. Requires authentication and is rate-limited to avoid misuse.
  */
 
 // Random Gifs Endpoints
-router.get('/api/kick', createRateLimiter(), authorize(config.roles.USER), randomKick);
-router.get('/api/kill', createRateLimiter(), authorize(config.roles.USER), randomKill);
-router.get('/api/kiss', createRateLimiter(), authorize(config.roles.USER), randomKissu);
-router.get('/api/midfing', createRateLimiter(), authorize(config.roles.USER), randomMidfing);
-router.get('/api/nuzzle', createRateLimiter(), authorize(config.roles.USER), randomNuzzle);
-router.get('/api/punch', createRateLimiter(), authorize(config.roles.USER), randomPunch);
-router.get('/api/shoot', createRateLimiter(), authorize(config.roles.USER), randomShoot);
-router.get('/api/sip', createRateLimiter(), authorize(config.roles.USER), randomSip);
-router.get('/api/sleepy', createRateLimiter(), authorize(config.roles.USER), randomSleepy);
-router.get('/api/smile', createRateLimiter(), authorize(config.roles.USER), randomSmile);
-router.get('/api/stab', createRateLimiter(), authorize(config.roles.USER), randomStab);
-router.get('/api/stare', createRateLimiter(), authorize(config.roles.USER), randomStare);
-router.get('/api/suicide', createRateLimiter(), authorize(config.roles.USER), randomSuicide);
-router.get('/api/tease', createRateLimiter(), authorize(config.roles.USER), randomTease);
-router.get('/api/wag', createRateLimiter(), authorize(config.roles.USER), randomWag);
-router.get('/api/bite', createRateLimiter(), authorize(config.roles.USER), randomBite);
-router.get('/api/blush', createRateLimiter(), authorize(config.roles.USER), randomBlush);
-router.get('/api/bonk', createRateLimiter(), authorize(config.roles.USER), randomBonk);
-router.get('/api/bored', createRateLimiter(), authorize(config.roles.USER), randomBored);
-router.get('/api/bully', createRateLimiter(), authorize(config.roles.USER), randomBully);
-router.get('/api/bye', createRateLimiter(), authorize(config.roles.USER), randomBye);
-router.get('/api/chase', createRateLimiter(), authorize(config.roles.USER), randomChase);
-router.get('/api/cheer', createRateLimiter(), authorize(config.roles.USER), randomCheer);
-router.get('/api/dab', createRateLimiter(), authorize(config.roles.USER), randomDab);
-router.get('/api/die', createRateLimiter(), authorize(config.roles.USER), randomDie);
-router.get('/api/disgust', createRateLimiter(), authorize(config.roles.USER), randomDisgust);
-router.get('/api/feed', createRateLimiter(), authorize(config.roles.USER), randomFeed);
-router.get('/api/hi', createRateLimiter(), authorize(config.roles.USER), randomHi);
-router.get('/api/hold', createRateLimiter(), authorize(config.roles.USER), randomHold);
-router.get('/api/hug', createRateLimiter(), authorize(config.roles.USER), randomHug);
-router.get('/api/Nope', createRateLimiter(), authorize(config.roles.USER), randomNope);
-router.get('/api/panic', createRateLimiter(), authorize(config.roles.USER), randomPanic);
-router.get('/api/pat', createRateLimiter(), authorize(config.roles.USER), randomPat);
-router.get('/api/peck', createRateLimiter(), authorize(config.roles.USER), randomPeck);
-router.get('/api/poke', createRateLimiter(), authorize(config.roles.USER), randomPoke);
-router.get('/api/punch', createRateLimiter(), authorize(config.roles.USER), randomPunch);
-router.get('/api/pout', createRateLimiter(), authorize(config.roles.USER), randomPout);
-router.get('/api/run', createRateLimiter(), authorize(config.roles.USER), randomRun);
-router.get('/api/sad', createRateLimiter(), authorize(config.roles.USER), randomSad);
-router.get('/api/shrug', createRateLimiter(), authorize(config.roles.USER), randomShrug);
-router.get('/api/slap', createRateLimiter(), authorize(config.roles.USER), randomSlap);
-router.get('/api/smug', createRateLimiter(), authorize(config.roles.USER), randomSmug);
-router.get('/api/think', createRateLimiter(), authorize(config.roles.USER), randomThink);
-router.get('/api/thumbsup', createRateLimiter(), authorize(config.roles.USER), randomThumbsup);
-router.get('/api/tickle', createRateLimiter(), authorize(config.roles.USER), randomTickle);
-router.get('/api/triggered', createRateLimiter(), authorize(config.roles.USER), randomTriggered);
-router.get('/api/wave', createRateLimiter(), authorize(config.roles.USER), randomWave);
-router.get('/api/wink', createRateLimiter(), authorize(config.roles.USER), randomWink);
-router.get('/api/yes', createRateLimiter(), authorize(config.roles.USER), randomYes);
-router.get('/api/angry', createRateLimiter(), authorize(config.roles.USER), randomAngry);
-router.get('/api/cringe', createRateLimiter(), authorize(config.roles.USER), randomCringe);
-router.get('/api/cry', createRateLimiter(), authorize(config.roles.USER), randomCry);
-router.get('/api/cuddle', createRateLimiter(), authorize(config.roles.USER), randomCuddle);
-router.get('/api/dance', createRateLimiter(), authorize(config.roles.USER), randomDance);
-router.get('/api/facepalm', createRateLimiter(), authorize(config.roles.USER), randomFacepalm);
-router.get('/api/glomp', createRateLimiter(), authorize(config.roles.USER), randomGlomp);
-router.get('/api/happy', createRateLimiter(), authorize(config.roles.USER), randomHappy);
-router.get('/api/highfive', createRateLimiter(), authorize(config.roles.USER), randomHighfive);
-router.get('/api/hug', createRateLimiter(), authorize(config.roles.USER), randomHug);
-router.get('/api/laugh', createRateLimiter(), authorize(config.roles.USER), randomLaugh);
-router.get('/api/lick', createRateLimiter(), authorize(config.roles.USER), randomLick);
-router.get('/api/love', createRateLimiter(), authorize(config.roles.USER), randomLove);
-router.get('/api/lurk', createRateLimiter(), authorize(config.roles.USER), randomLurk);
-router.get('/api/nervous', createRateLimiter(), authorize(config.roles.USER), randomNervous);
-router.get('/api/nom', createRateLimiter(), authorize(config.roles.USER), randomNom);
-router.get('/api/baka', createRateLimiter(), authorize(config.roles.USER), randomBaka);
+router.get('/api/v3/kick', createRateLimiter(), authorize(config.roles.USER), randomKick);
+router.get('/api/v3/kill', createRateLimiter(), authorize(config.roles.USER), randomKill);
+router.get('/api/v3/kiss', createRateLimiter(), authorize(config.roles.USER), randomKissu);
+router.get('/api/v3/midfing', createRateLimiter(), authorize(config.roles.USER), randomMidfing);
+router.get('/api/v3/nuzzle', createRateLimiter(), authorize(config.roles.USER), randomNuzzle);
+router.get('/api/v3/punch', createRateLimiter(), authorize(config.roles.USER), randomPunch);
+router.get('/api/v3/shoot', createRateLimiter(), authorize(config.roles.USER), randomShoot);
+router.get('/api/v3/sip', createRateLimiter(), authorize(config.roles.USER), randomSip);
+router.get('/api/v3/sleepy', createRateLimiter(), authorize(config.roles.USER), randomSleepy);
+router.get('/api/v3/smile', createRateLimiter(), authorize(config.roles.USER), randomSmile);
+router.get('/api/v3/stab', createRateLimiter(), authorize(config.roles.USER), randomStab);
+router.get('/api/v3/stare', createRateLimiter(), authorize(config.roles.USER), randomStare);
+router.get('/api/v3/suicide', createRateLimiter(), authorize(config.roles.USER), randomSuicide);
+router.get('/api/v3/tease', createRateLimiter(), authorize(config.roles.USER), randomTease);
+router.get('/api/v3/wag', createRateLimiter(), authorize(config.roles.USER), randomWag);
+router.get('/api/v3/bite', createRateLimiter(), authorize(config.roles.USER), randomBite);
+router.get('/api/v3/blush', createRateLimiter(), authorize(config.roles.USER), randomBlush);
+router.get('/api/v3/bonk', createRateLimiter(), authorize(config.roles.USER), randomBonk);
+router.get('/api/v3/bored', createRateLimiter(), authorize(config.roles.USER), randomBored);
+router.get('/api/v3/bully', createRateLimiter(), authorize(config.roles.USER), randomBully);
+router.get('/api/v3/bye', createRateLimiter(), authorize(config.roles.USER), randomBye);
+router.get('/api/v3/chase', createRateLimiter(), authorize(config.roles.USER), randomChase);
+router.get('/api/v3/cheer', createRateLimiter(), authorize(config.roles.USER), randomCheer);
+router.get('/api/v3/dab', createRateLimiter(), authorize(config.roles.USER), randomDab);
+router.get('/api/v3/die', createRateLimiter(), authorize(config.roles.USER), randomDie);
+router.get('/api/v3/disgust', createRateLimiter(), authorize(config.roles.USER), randomDisgust);
+router.get('/api/v3/feed', createRateLimiter(), authorize(config.roles.USER), randomFeed);
+router.get('/api/v3/hi', createRateLimiter(), authorize(config.roles.USER), randomHi);
+router.get('/api/v3/hold', createRateLimiter(), authorize(config.roles.USER), randomHold);
+router.get('/api/v3/hug', createRateLimiter(), authorize(config.roles.USER), randomHug);
+router.get('/api/v3/Nope', createRateLimiter(), authorize(config.roles.USER), randomNope);
+router.get('/api/v3/panic', createRateLimiter(), authorize(config.roles.USER), randomPanic);
+router.get('/api/v3/pat', createRateLimiter(), authorize(config.roles.USER), randomPat);
+router.get('/api/v3/peck', createRateLimiter(), authorize(config.roles.USER), randomPeck);
+router.get('/api/v3/poke', createRateLimiter(), authorize(config.roles.USER), randomPoke);
+router.get('/api/v3/punch', createRateLimiter(), authorize(config.roles.USER), randomPunch);
+router.get('/api/v3/pout', createRateLimiter(), authorize(config.roles.USER), randomPout);
+router.get('/api/v3/run', createRateLimiter(), authorize(config.roles.USER), randomRun);
+router.get('/api/v3/sad', createRateLimiter(), authorize(config.roles.USER), randomSad);
+router.get('/api/v3/shrug', createRateLimiter(), authorize(config.roles.USER), randomShrug);
+router.get('/api/v3/slap', createRateLimiter(), authorize(config.roles.USER), randomSlap);
+router.get('/api/v3/smug', createRateLimiter(), authorize(config.roles.USER), randomSmug);
+router.get('/api/v3/think', createRateLimiter(), authorize(config.roles.USER), randomThink);
+router.get('/api/v3/thumbsup', createRateLimiter(), authorize(config.roles.USER), randomThumbsup);
+router.get('/api/v3/tickle', createRateLimiter(), authorize(config.roles.USER), randomTickle);
+router.get('/api/v3/triggered', createRateLimiter(), authorize(config.roles.USER), randomTriggered);
+router.get('/api/v3/wave', createRateLimiter(), authorize(config.roles.USER), randomWave);
+router.get('/api/v3/wink', createRateLimiter(), authorize(config.roles.USER), randomWink);
+router.get('/api/v3/yes', createRateLimiter(), authorize(config.roles.USER), randomYes);
+router.get('/api/v3/angry', createRateLimiter(), authorize(config.roles.USER), randomAngry);
+router.get('/api/v3/cringe', createRateLimiter(), authorize(config.roles.USER), randomCringe);
+router.get('/api/v3/cry', createRateLimiter(), authorize(config.roles.USER), randomCry);
+router.get('/api/v3/cuddle', createRateLimiter(), authorize(config.roles.USER), randomCuddle);
+router.get('/api/v3/dance', createRateLimiter(), authorize(config.roles.USER), randomDance);
+router.get('/api/v3/facepalm', createRateLimiter(), authorize(config.roles.USER), randomFacepalm);
+router.get('/api/v3/glomp', createRateLimiter(), authorize(config.roles.USER), randomGlomp);
+router.get('/api/v3/happy', createRateLimiter(), authorize(config.roles.USER), randomHappy);
+router.get('/api/v3/highfive', createRateLimiter(), authorize(config.roles.USER), randomHighfive);
+router.get('/api/v3/hug', createRateLimiter(), authorize(config.roles.USER), randomHug);
+router.get('/api/v3/laugh', createRateLimiter(), authorize(config.roles.USER), randomLaugh);
+router.get('/api/v3/lick', createRateLimiter(), authorize(config.roles.USER), randomLick);
+router.get('/api/v3/love', createRateLimiter(), authorize(config.roles.USER), randomLove);
+router.get('/api/v3/lurk', createRateLimiter(), authorize(config.roles.USER), randomLurk);
+router.get('/api/v3/nervous', createRateLimiter(), authorize(config.roles.USER), randomNervous);
+router.get('/api/v3/nom', createRateLimiter(), authorize(config.roles.USER), randomNom);
+router.get('/api/v3/baka', createRateLimiter(), authorize(config.roles.USER), randomBaka);
 
 // Note: The comments for the remaining endpoints (utils and GIFs) follow a similar structure of explaining the purpose,
 // authentication requirement, and rate-limiting aspect of each endpoint.
