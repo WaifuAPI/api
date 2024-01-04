@@ -31,7 +31,7 @@ router
    * @returns {function} Express middleware function that handles rate limiting.
    *
    */
-  .get(createRateLimiter(), authorize(config.roles.USER), getRandomQuote)
+  .get(authorize(config.roles.USER), createRateLimiter(), getRandomQuote)
   /**
    * @api {post} v4/quote Increment Quote Data
    * @apiDescription Increment data related to quotes (only accessible by database moderators).
@@ -53,7 +53,7 @@ router
    * @returns {function} Express middleware function that handles rate limiting.
    *
    */
-  .post(createRateLimiter(), authorize(config.roles.DB_MOD), incrementData('Quote'));
+  .post(authorize(config.roles.DB_MOD), createRateLimiter(), incrementData('Quote'));
 
 router
   .route('/:id')
@@ -77,7 +77,7 @@ router
    * @description Creates a rate limiter middleware to control the frequency of requests.
    * @returns {function} Express middleware function that handles rate limiting.
    */
-  .patch(createRateLimiter(), authorize(config.roles.DB_MOD), updateData('Quote'))
+  .patch(authorize(config.roles.DB_MOD), createRateLimiter(), updateData('Quote'))
   /**
    * @api {delete} v4/quote/:id Delete Quote Data
    * @apiDescription Delete data related to quotes with a specific ID (only accessible by admins).
@@ -98,7 +98,7 @@ router
    * @description Creates a rate limiter middleware to control the frequency of requests.
    * @returns {function} Express middleware function that handles rate limiting.
    */
-  .delete(createRateLimiter(), authorize(config.roles.ADMIN), deleteData('Quote'));
+  .delete(authorize(config.roles.ADMIN), createRateLimiter(), deleteData('Quote'));
 
 // Export the router
 export default router;
