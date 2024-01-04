@@ -2,7 +2,7 @@ import createError from 'http-errors';
 import uvuify from 'owoify-js';
 import Stats from '../../../models/schemas/Stat.js';
 
-const getUvufiyText = async (req, res, next) => {
+const getUvuifyText = async (req, res, next) => {
   try {
     const { text } = req.query;
 
@@ -14,17 +14,11 @@ const getUvufiyText = async (req, res, next) => {
       text: uvuify(text),
     });
 
-    await Stats.findOneAndUpdate(
-      { _id: 'systemstats' },
-      { $inc: { uvuify: 1 } }
-    );
+    await Stats.findOneAndUpdate({ _id: 'systemstats' }, { $inc: { uvuify: 1 } });
   } catch (error) {
-    await Stats.findOneAndUpdate(
-      { _id: 'systemstats' },
-      { $inc: { failed_requests: 1 } }
-    );
+    await Stats.findOneAndUpdate({ _id: 'systemstats' }, { $inc: { failed_requests: 1 } });
     return next(error);
   }
 };
 
-export default getUvufiyText;
+export default getUvuifyText;
