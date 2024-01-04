@@ -1,22 +1,20 @@
-# Environment variables
+# Ignore environment variables file
 .env
 
-
-# dependencies
+# Ignore dependencies
 /node_modules
 
-# Private files
+# Ignore private files
 /private
 
-
-# jetbrains
+# JetBrains IDE files
 .idea/
 
-# vscode
+# Visual Studio Code settings
 .vscode/
 
-# Logs
+# Ignore log files
 /logs
 
-# Data Files
+# Ignore data files
 /data
