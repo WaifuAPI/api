@@ -6,6 +6,7 @@ import owoifyRoutes from './textUtilities/owoify.js';
 import passwordRoutes from './textUtilities/password.js';
 import uvuifyRoutes from './textUtilities/uvuify.js';
 import uwuifyRoutes from './textUtilities/uwuify.js';
+import waifuRoutes from './images/waifu.js';
 
 /**
  * Express Router for handling API routes.
@@ -97,6 +98,20 @@ router.use('/uvuify', uvuifyRoutes);
  * @returns {Object} Uwuify-related routes.
  */
 router.use('/uwuify', uwuifyRoutes);
+
+/**
+ * @api {use} v4/waifu Use Waifu Routes
+ * @apiDescription Mount the waifu-related routes for handling images.
+ * @apiName UseWaifuRoutes
+ * @apiGroup Routes
+ *
+ * @apiSuccess {Object} routes Uwuify-related routes mounted on the parent router.
+ *
+ * @function createUwuifyRoutes
+ * @description Creates and returns a set of routes for handling images related to waifu.
+ * @returns {Object} Waifu-related routes.
+ */
+router.use('/waifu', waifuRoutes);
 
 /**
  * Exporting the router for use in other parts of the application.
