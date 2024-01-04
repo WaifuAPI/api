@@ -1,5 +1,5 @@
 import Tags from '../../../models/schemas/Tags.js';
-import parseOrder from '../../../utils/parseOrder.js';
+import parseOrder from '../../../modules/parseOrder.js';
 import Stats from '../../../models/schemas/Stat.js';
 
 /**
@@ -41,16 +41,10 @@ const listTags = async (req, res, next) => {
     res.json(results);
 
     // Update system statistics for tags
-    await Stats.findOneAndUpdate(
-      { _id: 'systemstats' },
-      { $inc: { tags: 1 } }
-    );
+    await Stats.findOneAndUpdate({ _id: 'systemstats' }, { $inc: { tags: 1 } });
   } catch (error) {
     // Update system statistics for failed requests
-    await Stats.findOneAndUpdate(
-      { _id: 'systemstats' },
-      { $inc: { failed_requests: 1 } }
-    );
+    await Stats.findOneAndUpdate({ _id: 'systemstats' }, { $inc: { failed_requests: 1 } });
     return next(error);
   }
 };
