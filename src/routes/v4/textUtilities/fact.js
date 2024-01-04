@@ -1,4 +1,3 @@
-// routes/index.js
 import { Router } from 'express';
 import getRandomFact from '../../../controllers/v4/textUtilities/fact.js';
 import createRateLimiter from '../../../middlewares/rateLimit.js';
