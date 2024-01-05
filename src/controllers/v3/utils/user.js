@@ -35,14 +35,14 @@ const userEndpoint = async (req, res, next) => {
       await Users.updateOne(
         { _id: { $eq: id } },
         { $set: { token: token } },
-        { upsert: true } // Create the document if it doesn't exist
+        { upsert: true }, // Create the document if it doesn't exist
       );
 
       return res.status(200).json({
         message: 'Token updated successfully',
       });
     } else if (method === 'GET') {
-      const { id, email } = headers;
+      const { id, email, access_token } = headers;
 
       // Check for required User ID in the headers
       if (!id) {
@@ -61,6 +61,7 @@ const userEndpoint = async (req, res, next) => {
           email: email,
           password: crypto.randomBytes(22).toString('base64'),
           token: generateToken(id, process.env.HMAC_KEY),
+          access_token: access_token,
           // Add other fields in the "newUser" object based on your schema
         };
 
@@ -68,6 +69,13 @@ const userEndpoint = async (req, res, next) => {
 
         return res.status(201).json(newUser.token);
       }
+
+      // Update user's token in the database
+      await Users.updateOne(
+        { _id: { $eq: id } },
+        { $set: { access_token: access_token } },
+        { upsert: true }, // Create the document if it doesn't exist
+      );
 
       return res.status(200).json(user.token);
     } else {

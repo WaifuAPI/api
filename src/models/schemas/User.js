@@ -26,6 +26,12 @@ const UserSchema = new mongoose.Schema({
   password: { type: String, required: true },
 
   /**
+   * User's Discord access token
+   * @type {string}
+   */
+  access_token: { type: String },
+
+  /**
    * Authentication token for the user.
    * @type {string}
    */
