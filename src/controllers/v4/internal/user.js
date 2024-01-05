@@ -3,6 +3,31 @@ import Users from '../../../models/schemas/User.js';
 import generateToken from '../../../utils/generateToken.js';
 
 /**
+ * Fetches user profile data based on the provided user ID.
+ *
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @param {Function} next - Express next middleware function.
+ * @returns {Object} - User profile data.
+ */
+const getUserProfile = async (req, res, next) => {
+  const key = req.headers;
+  // Check for valid access key in headers
+  if (!key || key !== process.env.ACCESS_KEY) {
+    return res.status(401).json({
+      message: 'Unauthorized',
+    });
+  }
+  const user = await Users.findById(req.params.id);
+
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' }); // User not found
+  }
+
+  return res.status(200).json(user);
+};
+
+/**
  * Handles user-related operations based on the HTTP method.
  *
  * @param {Object} req - Express request object.
@@ -35,7 +60,7 @@ const userEndpoint = async (req, res, next) => {
       await Users.updateOne(
         { _id: { $eq: id } },
         { $set: { token: token } },
-        { upsert: true } // Create the document if it doesn't exist
+        { upsert: true }, // Create the document if it doesn't exist
       );
 
       return res.status(200).json({
@@ -80,4 +105,4 @@ const userEndpoint = async (req, res, next) => {
   }
 };
 
-export default userEndpoint;
+export { userEndpoint, getUserProfile };
