@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 import Users from '../../../models/schemas/User.js';
-import generateToken from '../../../utils/generateToken.js';
+import generateToken from '../../../modules/generateToken.js';
 
 /**
  * Fetches user profile data based on the provided user ID.
@@ -11,7 +11,8 @@ import generateToken from '../../../utils/generateToken.js';
  * @returns {Object} - User profile data.
  */
 const getUserProfile = async (req, res, next) => {
-  const key = req.headers;
+  const key = req.headers.key;
+  console.log('Key: ' + key);
   // Check for valid access key in headers
   if (!key || key !== process.env.ACCESS_KEY) {
     return res.status(401).json({
@@ -19,7 +20,7 @@ const getUserProfile = async (req, res, next) => {
     });
   }
   const user = await Users.findById(req.params.id);
-
+  console.log(user);
   if (!user) {
     return res.status(404).json({ message: 'User not found' }); // User not found
   }

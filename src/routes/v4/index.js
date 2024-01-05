@@ -7,6 +7,7 @@ import passwordRoutes from './textUtilities/password.js';
 import uvuifyRoutes from './textUtilities/uvuify.js';
 import uwuifyRoutes from './textUtilities/uwuify.js';
 import waifuRoutes from './images/waifu.js';
+import userRoutes from './internal/user.js';
 
 /**
  * Express Router for handling API routes.
@@ -112,6 +113,20 @@ router.use('/uwuify', uwuifyRoutes);
  * @returns {Object} Waifu-related routes.
  */
 router.use('/waifu', waifuRoutes);
+
+/**
+ * @api {use} v4/user Use User Routes
+ * @apiDescription Mount the user-related routes for handling images.
+ * @apiName UseUserRoutes
+ * @apiGroup Routes
+ *
+ * @apiSuccess {Object} routes User-related routes mounted on the parent router.
+ *
+ * @function createUserRoutes
+ * @description Creates and returns a set of routes for handling user data.
+ * @returns {Object} Waifu-related routes.
+ */
+router.use('/user', userRoutes);
 
 /**
  * Exporting the router for use in other parts of the application.
