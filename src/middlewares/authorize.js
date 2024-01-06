@@ -48,7 +48,7 @@ const authorize = requiredRole => async (req, res, next) => {
      */
     const updateData = {
       $inc: {
-        req_quoto: userData && userData.req_quoto > 0 ? -1 : 0,
+        req_quota: userData && userData.req_quota > 0 ? -1 : 0,
         req_count: userData ? 1 : 0,
       },
     };
@@ -81,7 +81,7 @@ const authorize = requiredRole => async (req, res, next) => {
     /**
      * Handle case where the request limit is exhausted.
      */
-    if (userData.req_quoto <= 0) {
+    if (userData.req_quota <= 0) {
       return next(createError(403, "You've exhausted your request limits."));
     }
 
