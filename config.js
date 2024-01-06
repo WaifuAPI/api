@@ -15,10 +15,7 @@ dotenv.config();
 /**
  * Application configuration settings.
  * @type {Object}
- * @property {string} databaseHost - Database host address.
- * @property {string} databaseUsername - Database username.
- * @property {string} databasePassword - Database password.
- * @property {string} databaseName - Name of the database.
+ * @property {string} database - Name of the database.
  * @property {number} serverPort - Port for the server.
  * @property {string} serverHost - Host for the server.
  * @property {Object} roles - User roles.
@@ -31,32 +28,11 @@ dotenv.config();
  */
 const config = {
   /**
-   * Database host address.
-   * @type {string}
-   * @default 'localhost'
-   */
-  databaseHost: process.env.DB_HOST || 'localhost',
-
-  /**
-   * Database username.
-   * @type {string}
-   * @default 'user'
-   */
-  databaseUsername: process.env.DB_USERNAME || 'user',
-
-  /**
-   * Database password.
-   * @type {string}
-   * @default 'password'
-   */
-  databasePassword: process.env.DB_PASSWORD || 'password',
-
-  /**
    * Name of the database.
    * @type {string}
    * @default 'mydatabase'
    */
-  databaseName: process.env.MONGODB_URI || 'mydatabase',
+  database: process.env.MONGODB_URI || 'mydatabase',
 
   /**
    * Port for the server.
@@ -91,13 +67,6 @@ const config = {
     USER: 'user',
   },
 };
-
-/**
- * Determines the current environment based on the NODE_ENV environment variable.
- * Defaults to 'development' if NODE_ENV is not set.
- * @type {string}
- */
-const environment = process.env.NODE_ENV || 'development';
 
 /**
  * Global configuration object based on the current environment.
