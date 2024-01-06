@@ -74,9 +74,9 @@ const UserSchema = new mongoose.Schema({
   /**
    * User's request quota.
    * @type {number}
-   * @default 900
+   * @default 500
    */
-  req_quota: { type: Number, default: 900 },
+  req_quota: { type: Number, default: 500 },
 
   /**
    * Number of requests made by the user.

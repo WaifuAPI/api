@@ -82,7 +82,7 @@ const authorize = requiredRole => async (req, res, next) => {
      * Handle case where the request limit is exhausted.
      */
     if (userData.req_quoto <= 0) {
-      return next(createError(403, "You've exhausted your request limits. Buy Premium to increase it more."));
+      return next(createError(403, "You've exhausted your request limits."));
     }
 
     /**
