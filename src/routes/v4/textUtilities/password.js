@@ -1,7 +1,6 @@
 import { Router } from 'express';
-import getRandomPassword from '../../../controllers/v4/textUtilities/password.js';
+import getPassword from '../../../controllers/v4/textUtilities/password.js';
 import createRateLimiter from '../../../middlewares/rateLimit.js';
-import authorize from '../../../middlewares/authorize.js';
 
 const router = Router();
 
@@ -9,14 +8,12 @@ router
   .route('/')
   /**
    * @api {get} v4/password Generate Random Password
-   * @apiDescription Generate a random password.
-   * @apiName getRandomPassword
+   * @apiDescription Generates a random password.
+   * @apiName getPassword
    * @apiGroup TextUtilities
-   * @apiPermission user
+   * @apiPermission global
    *
-   * @apiHeader {String} Authorization User's access token.
-   *
-   * @apiSuccess {String} owoifiedText Owoified version of the input text.
+   * @apiSuccess {String} password Randomly generated password.
    *
    * @apiError (Unauthorized 401) Unauthorized Only authenticated users can access the data.
    * @apiError (Forbidden 403) Forbidden Only authorized users can access the data.
@@ -28,7 +25,7 @@ router
    * @apiSuccess {function} middleware Express middleware function that handles rate limiting.
    *
    */
-  .get(createRateLimiter(), getRandomPassword);
+  .get(createRateLimiter(), getPassword);
 
 // Export the router
 export default router;
