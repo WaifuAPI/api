@@ -9,7 +9,7 @@ import Stats from '../../../models/schemas/Stat.js';
  * @param {Object} res - Express response object.
  * @param {Function} next - Express next middleware function.
  */
-const getRandomQuote = async (req, res, next) => {
+const getQuote = async (req, res, next) => {
   try {
     /**
      * Extract character parameter from the query
@@ -62,4 +62,4 @@ const getRandomQuote = async (req, res, next) => {
   }
 };
 
-export default getRandomQuote;
+export default getQuote;
