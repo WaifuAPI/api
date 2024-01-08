@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import getRandomWaifu from '../../../controllers/v4/images/waifu.js';
+import getWaifu from '../../../controllers/v4/images/waifu.js';
 import createRateLimiter from '../../../middlewares/rateLimit.js';
 import authorize from '../../../middlewares/authorize.js';
 import incrementData from '../../../middlewares/database/add.js';
@@ -13,7 +13,7 @@ router
   /**
    * @api {get} v4/waifu Get a Random Waifu
    * @apiDescription Retrieve a random Waifu.
-   * @apiName getRandomWaifu
+   * @apiName getWaifu
    * @apiGroup images
    * @apiPermission user
    *
@@ -31,7 +31,7 @@ router
    * @returns {function} Express middleware function that handles rate limiting.
    *
    */
-  .get(authorize(config.roles.USER), createRateLimiter(), getRandomWaifu)
+  .get(authorize(config.roles.USER), createRateLimiter(), getWaifu)
   /**
    * @api {post} v4/waifu Increment Waifu Data
    * @apiDescription Increment data related to Waifus (only accessible by database moderators).

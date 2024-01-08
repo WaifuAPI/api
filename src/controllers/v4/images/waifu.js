@@ -1,3 +1,4 @@
+import createError from 'http-errors';
 import Waifus from '../../../models/schemas/Waifu.js';
 import Stats from '../../../models/schemas/Stat.js';
 
@@ -14,20 +15,49 @@ import Stats from '../../../models/schemas/Stat.js';
  * @returns {Object} JSON object containing the random waifu.
  * @example
  * // Example usage in Express route handler
- * getRandomWaifu(req, res, next);
+ * getWaifu(req, res, next);
  */
-const getRandomWaifu = async (req, res, next) => {
+const getWaifu = async (req, res, next) => {
   try {
+    /**
+     * Extracts character name and anime parameters from the request query.
+     * @type {Object}
+     */
+    const { name, anime } = req.query;
+
+    /**
+     * Holds the filter object based on the optional character name and anime name parameters.
+     * @type {Object}
+     */
+    const filter = {};
+
+    /**
+     * Add conditions to filter object based on request parameters
+     * @type {Object}
+     */
+
+    if (name) {
+      filter['names.en'] = { $regex: new RegExp(name, 'i') }; // Case-insensitive regex match for English name
+    }
+
+    if (anime) {
+      filter['from.name'] = { $regex: new RegExp(anime, 'i') }; // Case-insensitive regex match for anime name
+    }
+
     /**
      * Holds the result of the random waifu retrieval.
      * @type {Object}
      */
     const [result] = await Waifus.aggregate([
-      // Select a random document from the results
+      { $match: filter }, // Apply filter conditions (if any)
       { $sample: { size: 1 } },
       { $project: { __v: 0 } },
     ]);
 
+    // If no fact is found, return a 404 error
+    if (!result) {
+      return next(createError(404, 'Could not find any matching waifu'));
+    }
     /**
      * Responds with a JSON object containing the random waifu.
      * @type {Object}
@@ -61,4 +91,4 @@ const getRandomWaifu = async (req, res, next) => {
   }
 };
 
-export default getRandomWaifu;
+export default getWaifu;
