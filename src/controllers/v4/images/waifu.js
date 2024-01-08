@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import createError from 'http-errors';
 import Waifus from '../../../models/schemas/Waifu.js';
 import Stats from '../../../models/schemas/Stat.js';
@@ -37,11 +38,13 @@ const getWaifu = async (req, res, next) => {
      */
 
     if (name) {
-      filter['names.en'] = { $regex: new RegExp(name, 'i') }; // Case-insensitive regex match for English name
+      const sanitizedName = _.escapeRegExp(name.trim());
+      filter['names.en'] = { $regex: new RegExp(sanitizedName, 'i') }; // Case-insensitive regex match for English name
     }
 
     if (anime) {
-      filter['from.name'] = { $regex: new RegExp(anime, 'i') }; // Case-insensitive regex match for anime name
+      const sanitizedAnime = _.escapeRegExp(anime.trim());
+      filter['from.name'] = { $regex: new RegExp(sanitizedAnime, 'i') }; // Case-insensitive regex match for anime name
     }
 
     /**
