@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import getRandomFact from '../../../controllers/v4/textUtilities/fact.js';
+import getFact from '../../../controllers/v4/textUtilities/fact.js';
 import createRateLimiter from '../../../middlewares/rateLimit.js';
 import authorize from '../../../middlewares/authorize.js';
 import incrementData from '../../../middlewares/database/add.js';
@@ -13,7 +13,7 @@ router
   /**
    * @api {get} v4/fact Get a Random Fact
    * @apiDescription Retrieve a random fact.
-   * @apiName GetRandomFact
+   * @apiName GetFact
    * @apiGroup Fact
    * @apiPermission user
    *
@@ -31,7 +31,7 @@ router
    * @returns {function} Express middleware function that handles rate limiting.
    *
    */
-  .get(authorize(config.roles.USER), createRateLimiter(), getRandomFact)
+  .get(authorize(config.roles.USER), createRateLimiter(), getFact)
   /**
    * @api {post} v4/fact Increment Fact Data
    * @apiDescription Increment data related to facts (only accessible by database moderators).

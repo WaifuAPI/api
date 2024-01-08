@@ -22,9 +22,9 @@ import Stats from '../../../models/schemas/Stat.js';
  *
  * @example
  * // Example usage in Express route handler
- * getRandomFact(req, res, next);
+ * getFact(req, res, next);
  */
-const getRandomFact = async (req, res, next) => {
+const getFact = async (req, res, next) => {
   try {
     /**
      * Extracts minLength, maxLength, and tags parameters from the request query.
@@ -85,4 +85,4 @@ const getRandomFact = async (req, res, next) => {
   }
 };
 
-export default getRandomFact;
+export default getFact;

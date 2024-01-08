@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import getRandomQuote from '../../../controllers/v4/textUtilities/quote.js';
+import getQuote from '../../../controllers/v4/textUtilities/quote.js';
 import createRateLimiter from '../../../middlewares/rateLimit.js';
 import authorize from '../../../middlewares/authorize.js';
 import incrementData from '../../../middlewares/database/add.js';
@@ -13,7 +13,7 @@ router
   /**
    * @api {get} v4/quote Get a Random Quote
    * @apiDescription Retrieve a random quote.
-   * @apiName getRandomQuote
+   * @apiName getQuote
    * @apiGroup Quote
    * @apiPermission user
    *
@@ -31,7 +31,7 @@ router
    * @returns {function} Express middleware function that handles rate limiting.
    *
    */
-  .get(authorize(config.roles.USER), createRateLimiter(), getRandomQuote)
+  .get(authorize(config.roles.USER), createRateLimiter(), getQuote)
   /**
    * @api {post} v4/quote Increment Quote Data
    * @apiDescription Increment data related to quotes (only accessible by database moderators).

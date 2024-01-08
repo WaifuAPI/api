@@ -17,9 +17,9 @@ import Stats from '../../../models/schemas/Stat.js';
  *
  * @example
  * // Example usage in Express route handler
- * getRandomPassword(req, res, next);
+ * getPassword(req, res, next);
  */
-const getRandomPassword = async (req, res, next) => {
+const getPassword = async (req, res, next) => {
   try {
     /**
      * Extracts the desired character length for the password.
@@ -59,4 +59,4 @@ const getRandomPassword = async (req, res, next) => {
   }
 };
 
-export default getRandomPassword;
+export default getPassword;
