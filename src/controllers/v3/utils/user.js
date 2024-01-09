@@ -31,12 +31,17 @@ const userEndpoint = async (req, res, next) => {
         });
       }
 
+      // Check if the user with the given _id exists
+      const userExists = await Users.exists({ _id: id });
+
+      if (!userExists) {
+        return res.status(404).json({
+          message: 'User not found',
+        });
+      }
+
       // Update user's token in the database
-      await Users.updateOne(
-        { _id: { $eq: id } },
-        { $set: { token: token } },
-        { upsert: true }, // Create the document if it doesn't exist
-      );
+      await Users.updateOne({ _id: { $eq: id } }, { $set: { token: token } });
 
       return res.status(200).json({
         message: 'Token updated successfully',
