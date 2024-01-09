@@ -86,13 +86,6 @@ const UserSchema = new mongoose.Schema({
   req_count: { type: Number, default: 0 },
 
   /**
-   * Flag indicating whether the user's token needs to be reset.
-   * @type {boolean}
-   * @default false
-   */
-  token_reset: { type: Boolean, default: false },
-
-  /**
    * Date and time when the user account was created.
    * @type {Date}
    * @default Date.now
