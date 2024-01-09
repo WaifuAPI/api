@@ -3,14 +3,14 @@ import Users from '../../../models/schemas/User.js';
 import generateToken from '../../../modules/generateToken.js';
 
 /**
- * Fetches user profile data based on the provided user ID.
+ * Fetches user profile data based on the provided user ID and Reset Token.
  *
  * @param {Object} req - Express request object.
  * @param {Object} res - Express response object.
  * @param {Function} next - Express next middleware function.
  * @returns {Object} - User profile data.
  */
-const getUserProfile = async (req, res, next) => {
+const retrieveAndUpdateUserProfile = async (req, res, next) => {
   const key = req.headers.key;
   // Check for valid access key in headers
   if (!key || key !== process.env.ACCESS_KEY) {
@@ -23,6 +23,14 @@ const getUserProfile = async (req, res, next) => {
     return res.status(404).json({ message: 'User not found' }); // User not found
   }
 
+  // Update user's token in the database
+  await Users.updateOne(
+    { _id: { $eq: req.params.id } },
+    { $set: { token: generateToken(req.params.id, process.env.HMAC_KEY) } },
+    { upsert: true }, // Create the document if it doesn't exist
+  );
+
+  // This will return the data however it won't be the latest one after updating the token
   return res.status(200).json(user);
 };
 
@@ -104,4 +112,4 @@ const userEndpoint = async (req, res, next) => {
   }
 };
 
-export { userEndpoint, getUserProfile };
+export { userEndpoint, retrieveAndUpdateUserProfile };
