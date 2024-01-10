@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { userEndpoint, retrieveAndUpdateUserProfile } from '../../../controllers/v4/internal/user.js';
+import { userEndpoint, retrieveUserProfile, updateUserToken } from '../../../controllers/v4/internal/user.js';
 import createRateLimiter from '../../../middlewares/rateLimit.js';
 
 const router = Router();
@@ -38,9 +38,9 @@ router
   /**
    * @api {get} v4/user/profile/:id Get User Profile
    * @apiDescription Get the profile of a specific user.
-   * @apiName retrieveAndUpdateUserProfile
+   * @apiName retrieveUserProfile
    * @apiGroup UserManagement
-   * @apiPermission user
+   * @apiPermission sudo
    *
    * @apiHeader {String} Authorization User's access token.
    *
@@ -62,7 +62,30 @@ router
    * @apiSuccess {function} middleware Express middleware function that handles rate limiting.
    *
    */
-  .get(createRateLimiter(), retrieveAndUpdateUserProfile);
+  .get(createRateLimiter(), retrieveUserProfile)
+  /**
+   * @api {patch} v4/user/profile/:id Get User Profile and Update reset the existing token
+   * @apiDescription Update the token for a specific user
+   * @apiName updateUserToken
+   * @apiGroup UserManagement
+   * @apiPermission sudo
+   *
+   * @apiHeader {String} Authorization User's access token.
+   *
+   * @apiParam {String} id User's unique identifier.
+   *
+   * @apiSuccess {Object} message
+   * @apiError (Unauthorized 401) Unauthorized Only authenticated users can access the data.
+   * @apiError (Forbidden 403) Forbidden Only authorized users can access the data.
+   * @apiError (Too Many Requests 429) TooManyRequests The client has exceeded the allowed number of requests within the time window.
+   * @apiError (Internal Server Error 500) InternalServerError An error occurred while processing the rate limit.
+   *
+   * @api {function} createRateLimiter
+   * @apiDescription Creates a rate limiter middleware to control the frequency of requests.
+   * @apiSuccess {function} middleware Express middleware function that handles rate limiting.
+   *
+   */
+  .patch(createRateLimiter(), updateUserToken);
 
 // Export the router
 export default router;

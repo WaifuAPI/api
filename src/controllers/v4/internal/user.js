@@ -3,6 +3,31 @@ import Users from '../../../models/schemas/User.js';
 import generateToken from '../../../modules/generateToken.js';
 
 /**
+ * Fetches user profile data based on the provided user ID
+ *
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @param {Function} next - Express next middleware function.
+ * @returns {Object} - User profile data.
+ */
+const retrieveUserProfile = async (req, res, next) => {
+  const key = req.headers.key;
+  // Check for valid access key in headers
+  if (!key || key !== process.env.ACCESS_KEY) {
+    return res.status(401).json({
+      message: 'Unauthorized',
+    });
+  }
+  const user = await Users.findById(req.params.id);
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' }); // User not found
+  }
+
+  // This will return the data however it won't be the latest one after updating the token
+  return res.status(200).json(user);
+};
+
+/**
  * Fetches user profile data based on the provided user ID and Reset Token.
  *
  * @param {Object} req - Express request object.
@@ -10,7 +35,7 @@ import generateToken from '../../../modules/generateToken.js';
  * @param {Function} next - Express next middleware function.
  * @returns {Object} - User profile data.
  */
-const retrieveAndUpdateUserProfile = async (req, res, next) => {
+const updateUserToken = async (req, res, next) => {
   const key = req.headers.key;
   // Check for valid access key in headers
   if (!key || key !== process.env.ACCESS_KEY) {
@@ -27,11 +52,12 @@ const retrieveAndUpdateUserProfile = async (req, res, next) => {
   await Users.updateOne(
     { _id: { $eq: req.params.id } },
     { $set: { token: generateToken(req.params.id, process.env.HMAC_KEY) } },
-    { upsert: true }, // Create the document if it doesn't exist
   );
 
   // This will return the data however it won't be the latest one after updating the token
-  return res.status(200).json(user);
+  return res.status(200).json({
+    message: 'Token reset successfully.',
+  });
 };
 
 /**
@@ -112,4 +138,4 @@ const userEndpoint = async (req, res, next) => {
   }
 };
 
-export { userEndpoint, retrieveAndUpdateUserProfile };
+export { userEndpoint, retrieveUserProfile, updateUserToken };
