@@ -1,8 +1,10 @@
-const { Schema, model } = require('mongoose')
+import mongoose from 'mongoose';
+const { Schema, model } = mongoose;
 
 const AngrySchema = new Schema({
   _id: { type: Number },
   url: { type: String, required: true },
-})
+});
 
-module.exports = model('Angry', AngrySchema)
+export default model('Angry', AngrySchema);
+

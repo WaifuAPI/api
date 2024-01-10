@@ -1,1 +1,1 @@
-## [Click here](https://github.com/WaifuAPI/Documentation) for API Documentaion.
+## [Click here](https://docs.waifu.it) for API Documentaion.

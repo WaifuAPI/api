@@ -1,8 +1,10 @@
-const { Schema, model } = require('mongoose')
+import mongoose from 'mongoose';
+const { Schema, model } = mongoose;
 
 const NuzzleSchema = new Schema({
   _id: { type: Number },
   url: { type: String, required: true },
-})
+});
 
-module.exports = model('Nuzzle', NuzzleSchema)
+export default model('Nuzzle', NuzzleSchema);
+

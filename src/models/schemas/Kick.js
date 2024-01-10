@@ -1,8 +1,10 @@
-const { Schema, model } = require('mongoose')
+import mongoose from 'mongoose';
+const { Schema, model } = mongoose;
 
 const KickSchema = new Schema({
   _id: { type: Number },
   url: { type: String, required: true },
-})
+});
 
-module.exports = model('Kick', KickSchema)
+export default model('Kick', KickSchema);
+

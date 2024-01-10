@@ -1,10 +1,13 @@
-const { Schema, model } = require('mongoose')
+import mongoose from 'mongoose';
+const { Schema, model } = mongoose;
 
 const TagSchema = new Schema({
   _id: { type: Number },
   name: { type: String, required: true },
-})
+});
 
-TagSchema.index({ name: 1 }, { name: 'nameIndex' })
+TagSchema.index({ name: 1 }, { name: 'nameIndex' });
 
-module.exports = model('Tag', TagSchema)
+const Tag = model('Tag', TagSchema);
+
+export default Tag;

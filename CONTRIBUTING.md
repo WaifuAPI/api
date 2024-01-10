@@ -1,69 +1,80 @@
-# Contributing to Waifu.it
+# 🌟 Your Contribution Matters at Waifu.it! 🌟
 
-We love your input! We want to make contributing to this project as easy as possible, whether it's:
+Greetings, and a heartfelt thank you for considering becoming a part of the Waifu.it project! We're thrilled about the prospect of your contribution and have made the process a breeze. Whether you're fixing something, reporting an issue, joining us as a maintainer, suggesting fantastic new features, or just engaging in lively discussions about our code, here's your invitation to dive in:
 
-- Submitting a fix
-- Reporting an issue
-- Becoming a maintainer
-- Proposing new features
-- Discussing the current state of the code
+## Embrace our Code of Conduct
 
-## Code of Conduct
+Before you embark on your journey, take a moment to acquaint yourself with our [Code of Conduct](CODE_OF_CONDUCT.md). It's the cornerstone of our respectful and inclusive community.
 
-The code of conduct is described in [Code of Conduct](CODE_OF_CONDUCT.md).
+## FAQs - Your Shortcut to Wisdom 🧠
 
-## Frequently Asked Questions (FAQs)
+To make your initiation smoother, we've compiled a list of Frequently Asked Questions:
 
-<!--- I thought it would be great to have a list of FAQs for the project to help save time for new contributors--->
+- **Q:** [The Question?]
+- **A:** [The Answer!]
 
-    - Q: [The Question?]
-    - A: [The Answer!]
+## Dreaming Up Features? 🚀
 
-## Feature Request
+Crafting a Feature Request? Elevate it with:
 
-Great Feature Requests tend to have:
+- A snappy summary of your brilliant idea.
+- Unveil the why behind your feature vision.
+- Sprinkle in some extra context—images, resource links—to paint the full picture.
 
-- A quick idea summary.
-- What & why you wanted to add the specific feature.
-- Additional context like images, links to resources to implement the feature etc, etc.
+## Join Our Dance of Development 💃🕺
 
-## Development Process
+Pull requests are your golden ticket to propose changes! Directly submit your pull requests [here](https://github.com/WaifuAPI/Waifu.it/pulls). After a bit of magic in the review, your changes can become part of our enchanting project.
 
-Pull requests are the best way to propose changes. We actively welcome your pull requests and invite you to submit pull requests directly <a href="https://github.com/WaifuAPI/Waifu.it/pulls">here</a>, and after review, these can be merged into the project.
+## Crafting Pull Requests - Unleash Your Magic ✨
 
-## Pull Requests
+1. Fork the repo and weave your code into the `staging` branch.
+2. If your code is a performer, let it showcase with some test examples.
+3. Describe your pull request with the elegance it deserves.
 
-1. Fork the repo and pr to `staging` branch only.
-2. If you've added code that should be tested, add some test examples.
-3. Ensure to describe your pull request.
+## Issues - Illuminate the Path 🕯️
 
-## Issues
+When reporting issues, cast a clear light with your description. Show us how to find the bug by [opening a new issue](https://github.com/WaifuAPI/Waifu.it/issues); it's as simple as that!
 
-Please ensure your description is
-clear and has sufficient instructions to be able to reproduce the issue. Report a bug by <a href="https://github.com/WaifuAPI/Waifu.it/issues">opening a new issue</a>; it's that easy!
-
-## Running the API Locally
+## Magic Happens Locally - Run the API 🎩🐇
 
 **Requirements**
 
-- Node >= 12.x
+- Node.js >=18.x
 - MongoDB
 
-**1. Create a database**
+**1. Create a Database**
 
-Create a MongoDB database.
+Craft a MongoDB database. No worries if you don't have MongoDB locally; [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) has a free hosted database waiting for you.
 
-If you don't have MongoDB setup locally, then you can use [MongoDB Atlas][mongodb/atlas] to create a free hosted database.
+**2. Enchant with Environment Variables**
 
-**2. Environment Variables**
-
-You need to set the `MONGODB_URI` environment variable to point to your database.
-
-Create a file called `.env` in the root directory of the project. Copy everything from `.env_example` and replace `<your-database-uri>` with the connection string for your database, _other env variables info are commented in the file itself._
+Craft a `.env` file in the project's magical realm. Copy the contents from `.env_example` and replace `<your-database-uri>` with your database connection string. Other mystical environment variables are revealed in the file.
 
 ```shell
 MONGODB_URI=<your-mongodb-uri>
 ```
+
+**3. Cast the Spell of Dependencies**
+
+```shell
+$ npm install
+```
+
+**4. Begin the Incantation - Start the Server**
+
+The server dances to your tune, restarting gracefully with every code change.
+
+```shell
+$ npm run dev
+```
+
+**And there you have it!**
+
+## License - Let's Create a Masterpiece Together 🎨
+
+By contributing to Waifu.it, you're authoring a chapter in our story. Your contributions will be elegantly licensed under the terms specified in the [LICENSE file](LICENSE.md).
+
+Let the adventure begin! Explore the realms of Waifu.it, and let's co-create something truly magical! 🚀✨
 
 **3. Installing dependencies**
 
