@@ -47,7 +47,7 @@ const userEndpoint = async (req, res, next) => {
         message: 'Token updated successfully',
       });
     } else if (method === 'GET') {
-      const { id, email, accessToken } = headers;
+      const { id, email, 'access-token': access_token } = headers;
 
       // Check for required User ID in the headers
       if (!id) {
@@ -66,7 +66,7 @@ const userEndpoint = async (req, res, next) => {
           email: email,
           password: crypto.randomBytes(22).toString('base64'),
           token: generateToken(id, process.env.HMAC_KEY),
-          access_token: accessToken,
+          access_token: access_token,
           // Add other fields in the "newUser" object based on your schema
         };
 
@@ -78,7 +78,7 @@ const userEndpoint = async (req, res, next) => {
       // Update user's token in the database
       await Users.updateOne(
         { _id: { $eq: id } },
-        { $set: { access_token: accessToken } },
+        { $set: { access_token: access_token } },
         { upsert: true }, // Create the document if it doesn't exist
       );
 
