@@ -72,6 +72,22 @@ import passwordRoutes from './textUtilities/password.js';
  */
 router.use('/password', passwordRoutes);
 
+import quoteRoutes from './textUtilities/quote.js';
+
+/**
+ * @api {use} v4/quote Use Quote Routes
+ * @apiDescription Mount the quote-related routes for handling text utilities.
+ * @apiName UseQuoteRoutes
+ * @apiGroup Routes
+ *
+ * @apiSuccess {Object} routes Quote-related routes mounted on the parent router.
+ *
+ * @function createQuoteRoutes
+ * @description Creates and returns a set of routes for handling text utilities related to quotes.
+ * @returns {Object} Quote-related routes.
+ */
+router.use('/quote', quoteRoutes);
+
 import uvuifyRoutes from './textUtilities/uvuify.js';
 
 /**
