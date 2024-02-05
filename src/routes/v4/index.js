@@ -120,6 +120,22 @@ import uwuifyRoutes from './textUtilities/uwuify.js';
  */
 router.use('/uwuify', uwuifyRoutes);
 
+import husbandoRoutes from './images/husbando.js';
+
+/**
+ * @api {use} v4/husbando Use Husbando Routes
+ * @apiDescription Mount the husbando-related routes for handling images.
+ * @apiName UseHusbandoRoutes
+ * @apiGroup Routes
+ *
+ * @apiSuccess {Object} routes Uwuify-related routes mounted on the parent router.
+ *
+ * @function createUwuifyRoutes
+ * @description Creates and returns a set of routes for handling images related to husbando.
+ * @returns {Object} Husbando-related routes.
+ */
+router.use('/husbando', husbandoRoutes);
+
 import waifuRoutes from './images/waifu.js';
 
 /**

@@ -1,68 +1,79 @@
 import mongoose from 'mongoose';
 
-// Destructuring to extract Schema and model from mongoose
 const { Schema, model } = mongoose;
 
 /**
- * Represents the schema for the Waifu model.
- * @class WaifuSchema
+ * Represents the schema for the Husbando model.
+ * @class HusbandoSchema
  */
-const WaifuSchema = new Schema({
+const HusbandoSchema = new Schema({
   /**
-   * The unique identifier for the Waifu.
+   * The unique identifier for the husbando.
    * @type {Number}
    */
   _id: { type: Number, required: true },
 
   /**
-   * The name details of the Waifu.
+   * The name details of the husbando.
    * @type {Object}
    */
   name: {
     /**
-     * The first name of the Waifu.
+     * The first name of the husbando.
      * @type {String}
      */
     first: { type: String, required: true },
 
     /**
-     * The middle name of the Waifu.
+     * The middle name of the husbando.
      * @type {String}
      */
     middle: String,
 
     /**
-     * The last name of the Waifu.
+     * The last name of the husbando.
      * @type {String}
      */
     last: { type: String, required: true },
 
     /**
-     * The full name of the Waifu.
+     * The full name of the husbando.
      * @type {String}
      */
     full: { type: String, required: true },
 
     /**
-     * The native name of the Waifu.
+     * The native name of the husbando.
      * @type {String}
      */
     native: String,
 
     /**
-     * The user-preferred name of the Waifu.
+     * The user-preferred name of the husbando.
      * @type {String}
      */
     userPreferred: { type: String, required: true },
+
+    /**
+     * Alternative names for the husbando.
+     * @type {Array}
+     */
+    alternative: [String],
+
+    /**
+     * Alternative spoiler names for the husbando.
+     * @type {Array}
+     */
+    alternativeSpoiler: [String],
   },
 
   /**
-   * The image URL associated with the Waifu.
+   * The image URL associated with the husbando.
    * @type {Object}
    */
   image: {
     /**
-     * The URL for the large image.
+     * The URL for the large image of the husbando.
      * @type {String}
      */
     large: String,
@@ -70,72 +81,72 @@ const WaifuSchema = new Schema({
   },
 
   /**
-   * The number of favorites for the Waifu.
+   * The number of favorites for the husbando.
    * @type {Number}
    */
   favourites: { type: Number, required: true },
 
   /**
-   * The URL of the Waifu's profile.
+   * The URL of the AniList page for the husbando.
    * @type {String}
    */
   siteUrl: { type: String, required: true },
 
   /**
-   * The description of the Waifu.
+   * The description of the husbando.
    * @type {String}
    */
   description: { type: String, required: true },
 
   /**
-   * The age range of the Waifu.
+   * The age of the husbando.
    * @type {String}
    */
   age: String,
 
   /**
-   * The gender of the Waifu.
+   * The gender of the husbando.
    * @type {String}
    */
   gender: { type: String, required: true },
 
   /**
-   * The blood type of the Waifu.
+   * The blood type of the husbando.
    * @type {String}
    */
   bloodType: String,
 
   /**
-   * The date of birth of the Waifu.
+   * The date of birth of the husbando.
    * @type {Object}
    */
   dateOfBirth: {
     /**
-     * The year of birth.
+     * The year of birth for the husbando.
      * @type {Number}
      */
     year: Number,
 
     /**
-     * The month of birth.
+     * The month of birth for the husbando.
      * @type {Number}
      */
     month: Number,
 
     /**
-     * The day of birth.
+     * The day of birth for the husbando.
      * @type {Number}
      */
     day: Number,
   },
 
   /**
-   * The media information associated with the Waifu.
+   * The media details associated with the husbando.
    * @type {Object}
    */
   media: {
     /**
-     * The list of media nodes.
+     * An array of nodes containing information about various media related to the husbando.
      * @type {Array}
      */
     nodes: [
@@ -153,10 +164,14 @@ const WaifuSchema = new Schema({
         idMal: { type: Number, required: true },
 
         /**
-         * The cover image URL for the media (medium size).
+         * The cover image details for the media.
          * @type {Object}
          */
         coverImage: {
+          /**
+           * The URL for the medium-sized cover image of the media.
+           * @type {String}
+           */
           medium: { type: String, required: true },
         },
 
@@ -167,7 +182,7 @@ const WaifuSchema = new Schema({
         bannerImage: String,
 
         /**
-         * The title information for the media.
+         * The title details for the media.
          * @type {Object}
          */
         title: {
@@ -197,25 +212,25 @@ const WaifuSchema = new Schema({
         },
 
         /**
-         * The list of synonyms for the media title.
+         * Synonyms for the media.
          * @type {Array}
          */
         synonyms: [String],
 
         /**
-         * The popularity rank of the media.
+         * The popularity score for the media.
          * @type {Number}
          */
         popularity: Number,
 
         /**
-         * The type of the media (e.g., ANIME, MANGA).
+         * The type of the media.
          * @type {String}
          */
         type: { type: String, required: true },
 
         /**
-         * The format of the media (e.g., TV, MOVIE).
+         * The format of the media.
          * @type {String}
          */
         format: { type: String, required: true },
@@ -225,9 +240,9 @@ const WaifuSchema = new Schema({
 });
 
 /**
- * Represents the Waifu model.
- * @class Waifu
+ * Represents the model for the Husbando.
+ * @class Husbando
  */
-const Waifu = model('Waifu', WaifuSchema);
+const Husbando = model('Husbando', HusbandoSchema);
 
-export default Waifu;
+export default Husbando;
