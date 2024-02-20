@@ -1,7 +1,7 @@
                                                        Privacy Policy
                                                  Effective Date: 20 Feb, 2024
 
-Welcome to Waifu.it! This Privacy Policy outlines how we collect, use, disclose, and protect your information when you use our REST API, related services, and associated features, accessible through the site [https://waifu.it](https://waifu.it).
+Welcome to Waifu.it! This Privacy Policy outlines how we collect, use, disclose, and protect your information when you use our REST API, related services, and associated features, accessible through the site https://waifu.it.
 
 1. Information We Collect
 
@@ -58,4 +58,4 @@ We may update this Privacy Policy to reflect changes in our practices. We will n
 
 8. Contact Us
 
-If you have any questions or concerns regarding this Privacy Policy, please contact us at [support@waifu.it](mailto:support@waifu.it).
+If you have any questions or concerns regarding this Privacy Policy, please contact us at support@waifu.it.
