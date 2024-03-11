@@ -44,7 +44,14 @@ const getWaifu = async (req, res, next) => {
 
     if (anime) {
       const sanitizedAnime = _.escapeRegExp(anime.trim());
-      filter['media.nodes[0].title.userPreferred'] = { $regex: new RegExp(sanitizedAnime, 'i') }; // Case-insensitive regex match for anime name
+      filter['media.nodes'] = {
+        $elemMatch: {
+          $or: [
+            { 'title.userPreferred': { $regex: new RegExp(sanitizedAnime, 'i') } },
+            { synonyms: { $regex: new RegExp(sanitizedAnime, 'i') } },
+          ],
+        },
+      };
     }
 
     /**
